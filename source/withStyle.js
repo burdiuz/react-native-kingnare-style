@@ -10,7 +10,7 @@ const WrapperDefaultProps = {
   style: undefined,
 };
 
-const withStyle = (Component, componentStyle) => {
+const withStyle = (Component, componentStyle, displayName = '') => {
   const Wrapper = (props) => (
     <Component
       {...props}
@@ -21,12 +21,12 @@ const withStyle = (Component, componentStyle) => {
   Wrapper.propTypes = WrapperPropTypes;
   Wrapper.defaultProps = WrapperDefaultProps;
 
-  Wrapper.displayName = `withStyle(${Component.name})`;
+  Wrapper.displayName = displayName || `withStyle(${Component.name})`;
 
   return Wrapper;
 };
 
-export const withStyles = (Component, styles = {}) => {
+export const withStyles = (Component, styles = {}, displayName = '') => {
   const styleKeys = Object.keys(styles);
 
   const Wrapper = (props) => {
@@ -53,7 +53,8 @@ export const withStyles = (Component, styles = {}) => {
   Wrapper.propTypes = WrapperPropTypes;
   Wrapper.defaultProps = WrapperDefaultProps;
 
-  Wrapper.displayName = `withStyles(${Component.name}, "${styleKeys.join('", "')}")`;
+  Wrapper.displayName =
+    displayName || `withStyles(${Component.name}, "${styleKeys.join('", "')}")`;
 
   return Wrapper;
 };

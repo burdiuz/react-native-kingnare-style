@@ -6,6 +6,4 @@ import Text from './Text';
 
 import styles from './styles';
 
-const Small = withStyle(Text, styles.small);
-
-export default Small;
+export default withStyle(Text, styles.small, 'Small');

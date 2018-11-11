@@ -10,4 +10,4 @@ const VBRule = (props) => (
   </View>
 );
 
-export default withStyle(VBRule, styles.vContainer);
+export default withStyle(VBRule, styles.vContainer, 'VBRule');

@@ -10,4 +10,4 @@ const VRule = (props) => (
   </View>
 );
 
-export default withStyle(VRule, styles.vContainer);
+export default withStyle(VRule, styles.vContainer, 'VRule');

@@ -8,6 +8,7 @@ import {
   ACTIVE_BACKGROUND_COLOR,
   TEXT_ACTIVE_COLOR,
   TEXT_DISABLED_COLOR,
+  TEXT_COLOR,
 } from '../constants';
 
 export const BUTTON_HIGHLIGHT_COLOR = 0x666666ff;
@@ -187,5 +188,26 @@ export const checkBoxInnerStyles = StyleSheet.create({
   },
   disabled: {
     backgroundColor: ACTIVE_BACKGROUND_COLOR,
+  },
+});
+
+export const linkStyles = StyleSheet.create({
+  highlight: {
+    borderRadius: 2,
+    height: ELEMENT_MIN_SIZE,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  normal: {
+    margin: 2,
+    color: TEXT_ACTIVE_COLOR,
+    textDecorationLine: 'underline',
+    textDecorationColor: TEXT_ACTIVE_COLOR,
+  },
+  disabled: {
+    margin: 2,
+    color: TEXT_DISABLED_COLOR,
+    textDecorationLine: 'underline',
+    textDecorationColor: TEXT_DISABLED_COLOR,
   },
 });

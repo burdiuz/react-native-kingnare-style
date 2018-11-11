@@ -6,6 +6,4 @@ import Text from './Text';
 
 import styles from './styles';
 
-const Italic = withStyle(Text, styles.italic);
-
-export default Italic;
+export default withStyle(Text, styles.italic, 'Italic');

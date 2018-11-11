@@ -6,6 +6,4 @@ import Text from './Text';
 
 import styles from './styles';
 
-const Strong = withStyle(Text, styles.strong);
-
-export default Strong;
+export default withStyle(Text, styles.strong, 'Strong');

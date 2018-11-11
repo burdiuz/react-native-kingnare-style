@@ -7,8 +7,6 @@ import withHeaderContainer from './withHeaderContainer';
 
 import styles from './styles';
 
-export const SmallHeaderText = withStyle(Text, styles.small);
+export const SmallHeaderText = withStyle(Text, styles.small, 'SmallHeaderText');
 
-const SmallHeader = withHeaderContainer(SmallHeaderText);
-
-export default SmallHeader;
+export default withHeaderContainer(SmallHeaderText, 'SmallHeader');

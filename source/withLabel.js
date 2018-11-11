@@ -55,7 +55,7 @@ const getPlacementStyle = (placement) => {
   return styles.containerLeft;
 };
 
-const withLabel = (Component) => {
+const withLabel = (Component, displayName = '') => {
   const Container = ({
     contentContainerStyle,
     placement,
@@ -94,7 +94,7 @@ const withLabel = (Component) => {
   Container.propTypes = ContainerPropTypes;
   Container.defaultProps = ContainerDefaultProps;
 
-  Container.displayName = `withLabel(${Component.name})`;
+  Container.displayName = displayName || `withLabel(${Component.name})`;
 
   return Container;
 };

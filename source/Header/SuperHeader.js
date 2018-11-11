@@ -7,8 +7,6 @@ import withHeaderContainer from './withHeaderContainer';
 
 import styles from './styles';
 
-export const SuperHeaderText = withStyle(Text, styles.super);
+export const SuperHeaderText = withStyle(Text, styles.super, 'SuperHeaderText');
 
-const SuperHeader = withHeaderContainer(SuperHeaderText);
-
-export default SuperHeader;
+export default withHeaderContainer(SuperHeaderText, 'SuperHeader');

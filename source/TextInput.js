@@ -90,7 +90,11 @@ TextInput.defaultProps = {
   editable: true,
 };
 
-export default withStyles(TextInput, {
-  style: ({ disabled }) => getButtonStyle(containerStyles, disabled),
-  inputStyle: ({ disabled }) => getButtonStyle(inputStyles, disabled),
-});
+export default withStyles(
+  TextInput,
+  {
+    style: ({ disabled }) => getButtonStyle(containerStyles, disabled),
+    inputStyle: ({ disabled }) => getButtonStyle(inputStyles, disabled),
+  },
+  'TextInput',
+);

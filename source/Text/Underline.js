@@ -6,6 +6,4 @@ import Text from './Text';
 
 import styles from './styles';
 
-const Underline = withStyle(Text, styles.underline);
-
-export default Underline;
+export default withStyle(Text, styles.underline, 'Underline');

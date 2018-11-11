@@ -8,4 +8,4 @@ import styles from './styles';
 
 const Text = (props) => <RNText {...props} />;
 
-export default withStyleInheritance(Text, styles.text);
+export default withStyleInheritance(Text, styles.text, 'Text');

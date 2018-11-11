@@ -14,4 +14,4 @@ const areaStyles = StyleSheet.create({
 
 const TextArea = (props) => <TextInput {...props} multiline={true} />;
 
-export default withStyles(TextArea, areaStyles);
+export default withStyles(TextArea, areaStyles, 'TextArea');

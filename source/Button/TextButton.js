@@ -14,22 +14,22 @@ import { Text } from '../Text';
 
 import Button from './Button';
 
-const TextButton = ({ text, textStyle, selected, disabled, ...props }) => (
+const TextButton = ({ label, labelStyle, selected, disabled, ...props }) => (
   <Button {...props} selected={selected} disabled={disabled}>
     <Text
       style={[
         styles.base,
         getButtonStyle(styles, disabled, selected),
-        textStyle,
+        labelStyle,
       ]}
     >
-      {text}
+      {label}
     </Text>
   </Button>
 );
 
 TextButton.propTypes = {
-  text: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
 };
 
 TextButton.defaultProps = {};

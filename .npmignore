@@ -1,0 +1,7 @@
+.*
+coverage/
+fixtures/
+source/
+files/
+__tests__/
+rollup.*

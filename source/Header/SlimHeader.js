@@ -7,8 +7,6 @@ import withHeaderContainer from './withHeaderContainer';
 
 import styles from './styles';
 
-export const SlimHeaderText = withStyle(Text, styles.slim);
+export const SlimHeaderText = withStyle(Text, styles.slim, 'SlimHeaderText');
 
-const SlimHeader = withHeaderContainer(SlimHeaderText);
-
-export default SlimHeader;
+export default withHeaderContainer(SlimHeaderText, 'SlimHeader');

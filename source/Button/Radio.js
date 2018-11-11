@@ -64,4 +64,4 @@ RadioButton.defaultProps = {
   selected: false,
 };
 
-export const Radio = withLabel(RadioButton);
+export const Radio = withLabel(RadioButton, 'Radio');

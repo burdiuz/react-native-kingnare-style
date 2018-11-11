@@ -6,6 +6,4 @@ import Text from './Text';
 
 import styles from './styles';
 
-const Sup = withStyle(Text, styles.sup);
-
-export default Sup;
+export default withStyle(Text, styles.sup, 'Sup');

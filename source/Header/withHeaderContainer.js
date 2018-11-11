@@ -6,7 +6,7 @@ import withStyle from '../withStyle';
 
 import styles from './styles';
 
-export const HeaderContainer = withStyle(View, styles.container);
+export const HeaderContainer = withStyle(View, styles.container, 'HeaderContainer');
 
 const WrapperPropTypes = {
   contentContainerStyle: PropTypes.any,
@@ -16,7 +16,7 @@ const WrapperDefaultProps = {
   contentContainerStyle: undefined,
 };
 
-const withHeaderContainer = (Component, defaultStyle) => {
+const withHeaderContainer = (Component, displayName = '') => {
   const Wrapper = ({ contentContainerStyle, ...props }) => (
     <HeaderContainer style={contentContainerStyle}>
       <Component {...props} />
@@ -26,7 +26,7 @@ const withHeaderContainer = (Component, defaultStyle) => {
   Wrapper.propTypes = WrapperPropTypes;
   Wrapper.defaultProps = WrapperDefaultProps;
 
-  Wrapper.displayName = `withHeaderContainer(${Component.name})`;
+  Wrapper.displayName = displayName || `withHeaderContainer(${Component.name})`;
 
   return Wrapper;
 };

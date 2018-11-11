@@ -10,4 +10,4 @@ const HRule = (props) => (
   </View>
 );
 
-export default withStyle(HRule, styles.hContainer);
+export default withStyle(HRule, styles.hContainer, 'HRule');

@@ -7,8 +7,6 @@ import withHeaderContainer from './withHeaderContainer';
 
 import styles from './styles';
 
-export const HeaderText = withStyle(Text, styles.header);
+export const HeaderText = withStyle(Text, styles.header, 'HeaderText');
 
-const Header = withHeaderContainer(HeaderText);
-
-export default Header;
+export default withHeaderContainer(HeaderText, 'Header');
