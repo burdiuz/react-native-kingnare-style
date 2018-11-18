@@ -14,12 +14,7 @@ import {
 import { Text } from './Text';
 
 const ContainerPropTypes = {
-  placement: PropTypes.oneOf([
-    PLACEMENT_LEFT,
-    PLACEMENT_RIGHT,
-    PLACEMENT_TOP,
-    PLACEMENT_BOTTOM,
-  ]),
+  placement: PropTypes.oneOf([PLACEMENT_LEFT, PLACEMENT_RIGHT, PLACEMENT_TOP, PLACEMENT_BOTTOM]),
   contentContainerStyle: PropTypes.any,
   disabled: PropTypes.bool,
   label: PropTypes.string,

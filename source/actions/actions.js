@@ -1,44 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { singleValueFactory } from '@actualwave/closure-value';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const knownActions = new Map();
 
 export const {
-  get: getDefaultFontFamily,
-  set: setDefaultFontFamily,
+  get: getDefaultIconFactory,
+  set: setDefaultIconFactory,
 } = singleValueFactory();
-
-setDefaultFontFamily(FontAwesome);
 
 export const createAction = (
   type,
-  iconName,
-  color = '#FFF',
   title = '',
-  iconFontFamily = getDefaultFontFamily(),
+  params = {},
+  color = '#FFF',
+  iconFactory = undefined,
 ) => ({
+  ...params,
   type,
-  iconFontFamily,
-  iconName,
-  color,
   title,
+  color,
+  iconFactory,
 });
 
 export const registerAction = (...actions) => {
   actions.forEach((action) => {
-    const { type, iconName, color, title, iconFontFamily } = action;
+    const { type, title, color, iconFactory, ...params } = action;
 
     if (knownActions.has(type)) {
       throw new Error(`Action with type "${type}" is already registered.`);
     }
 
-    knownActions.set(type, {
-      ...action,
-      // apply defaults to undefined properties
-      ...createAction(type, iconName, color, title, iconFontFamily),
-    });
+    knownActions.set(
+      type,
+      createAction(type, title, params, color, iconFactory),
+    );
   });
 };
 
@@ -83,15 +79,14 @@ export const renderIconFromAction = (
   size = undefined,
   style = undefined,
 ) => {
-  const { iconFontFamily: FontFamily, iconName, color } = getAction(type);
+  const action = getAction(type);
+  const { iconFactory = getDefaultIconFactory() } = action;
 
-  if (!FontFamily) {
-    throw new Error(
-      `Action with type "${type}" does not define iconFontFamily.`,
-    );
+  if (!iconFactory) {
+    return null;
   }
 
-  return <FontFamily name={iconName} color={color} size={size} style={style} />;
+  return iconFactory(action, size, style);
 };
 
 export const ActionPropType = PropTypes.oneOfType([

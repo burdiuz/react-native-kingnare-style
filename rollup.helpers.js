@@ -8,7 +8,12 @@ export const LIBRARY_VAR_NAME = 'BaseComponents';
 export const plugins = [
   resolve(),
   babel({
-    presets: [['module:metro-react-native-babel-preset', { disableImportExportTransform: true }]],
+    presets: [
+      [
+        'module:metro-react-native-babel-preset',
+        { disableImportExportTransform: true },
+      ],
+    ],
     plugins: ['@babel/plugin-external-helpers'],
     exclude: 'node_modules/**',
     runtimeHelpers: true,
@@ -35,5 +40,6 @@ export const makeCJSConfig = (sourceFile, targetFile) => ({
     'react-native',
     'prop-types',
     '@actualwave/is-function',
+    '@actualwave/closure-value',
   ],
 });

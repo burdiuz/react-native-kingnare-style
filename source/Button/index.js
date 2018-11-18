@@ -1,7 +1,4 @@
-import Button, {
-  ButtonHighlight,
-  makeHighlightComponent,
-} from './Button';
+import Button, { ButtonHighlight, makeHighlightComponent } from './Button';
 import { getButtonStyle } from './utils';
 
 import IconButton from './IconButton';

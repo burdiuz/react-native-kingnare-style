@@ -1,34 +1,8 @@
 {
   "name": "@actualwave/react-native-kingnare-style",
   "description": "Simple wrappers over standard React Naive components to give them look of Kingnare Theme",
-  "version": "0.0.1",
-  "files": [
-    "actions.js",
-    "Area.js",
-    "Button.js",
-    "Header.js",
-    "Rule.js",
-    "Screen.js",
-    "Text.js",
-    "Modal.js",
-    "TextArea.js",
-    "TextInput.js",
-    "withLabel.js",
-    "withStyle.js",
-
-    "actions.map",
-    "Area.map",
-    "Button.map",
-    "Header.map",
-    "Rule.map",
-    "Screen.map",
-    "Text.map",
-    "Modal.map",
-    "TextArea.map",
-    "TextInput.map",
-    "withLabel.map",
-    "withStyle.map"
-  ],
+  "version": "0.0.2",
+  "main": "index.js",
   "private": true,
   "keywords": [
     "js",
@@ -46,6 +20,7 @@
     "url": "https://github.com/burdiuz/react-native-kingnare-style.git"
   },
   "dependencies": {
+    "@actualwave/closure-value": "0.0.3",
     "@actualwave/is-function": "0.0.1"
   },
   "peerDependencies": {

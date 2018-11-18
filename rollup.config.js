@@ -1,6 +1,8 @@
 import { makeCJSConfig } from './rollup.helpers';
 
 export default [
+  makeCJSConfig('index', 'index'),
+  /*
   makeCJSConfig('actions/index', 'actions'),
   makeCJSConfig('Area/index', 'Area'),
   makeCJSConfig('Button/index', 'Button'),
@@ -13,4 +15,5 @@ export default [
   makeCJSConfig('TextInput', 'TextInput'),
   makeCJSConfig('withLabel', 'withLabel'),
   makeCJSConfig('withStyle', 'withStyle'),
+  */
 ];
