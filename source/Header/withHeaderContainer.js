@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 
+import { getComponentName } from '../utils';
+
 import withStyle from '../withStyle';
 
 import styles from './styles';
@@ -26,7 +28,7 @@ const withHeaderContainer = (Component, displayName = '') => {
   Wrapper.propTypes = WrapperPropTypes;
   Wrapper.defaultProps = WrapperDefaultProps;
 
-  Wrapper.displayName = displayName || `withHeaderContainer(${Component.name})`;
+  Wrapper.displayName = displayName || `withHeaderContainer(${getComponentName(Component)})`;
 
   return Wrapper;
 };

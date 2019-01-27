@@ -7,6 +7,8 @@ export * from './Modal';
 export * from './Rule';
 export * from './Screen';
 export * from './Text';
+export * from './Form';
 export * from './constants';
 export { default as withLabel } from './withLabel';
 export { default as withStyle, withStyles } from './withStyle';
+export { default as SwipeableXContainer } from './SwipeableXContainer';

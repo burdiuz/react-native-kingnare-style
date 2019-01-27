@@ -17,6 +17,11 @@ export const LIGHT_BORDER_COLOR = 0x5b5b5bff;
 export const DISABLED_BORDER_COLOR = 0x404040ff;
 export const DARK_BORDER_COLOR = 0x141414ff;
 
+export const ERROR_COLOR = 0xef767aff;
+export const WARNING_COLOR = 0xf7ee7fff;
+export const SUCCESS_COLOR = 0x5fdd9dff;
+export const FOCUS_COLOR = 0x8eb1c7ff;
+
 export const PLACEMENT_LEFT = 'left';
 export const PLACEMENT_RIGHT = 'right';
 export const PLACEMENT_TOP = 'top';

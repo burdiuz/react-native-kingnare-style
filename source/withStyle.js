@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isFunction from '@actualwave/is-function';
 
+import { getComponentName } from './utils';
+
 const WrapperPropTypes = {
   style: PropTypes.any,
 };
@@ -21,7 +23,7 @@ const withStyle = (Component, componentStyle, displayName = '') => {
   Wrapper.propTypes = WrapperPropTypes;
   Wrapper.defaultProps = WrapperDefaultProps;
 
-  Wrapper.displayName = displayName || `withStyle(${Component.name})`;
+  Wrapper.displayName = displayName || `withStyle(${getComponentName(Component)})`;
 
   return Wrapper;
 };
@@ -44,7 +46,9 @@ export const withStyles = (Component, styles = {}, displayName = '') => {
 
       const { [key]: style } = props;
 
-      styleProps[key] = style ? [defaultStyle, style] : defaultStyle;
+      if(defaultStyle) {
+        styleProps[key] = style ? [defaultStyle, style] : defaultStyle;
+      }
     });
 
     return <Component {...props} {...styleProps} />;
@@ -54,7 +58,7 @@ export const withStyles = (Component, styles = {}, displayName = '') => {
   Wrapper.defaultProps = WrapperDefaultProps;
 
   Wrapper.displayName =
-    displayName || `withStyles(${Component.name}, "${styleKeys.join('", "')}")`;
+    displayName || `withStyles(${getComponentName(Component)}, "${styleKeys.join('", "')}")`;
 
   return Wrapper;
 };

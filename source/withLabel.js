@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 
 import { getButtonStyle } from './Button/utils';
+
 import {
   TEXT_ACTIVE_COLOR,
   TEXT_DISABLED_COLOR,
@@ -11,6 +12,9 @@ import {
   PLACEMENT_TOP,
   PLACEMENT_BOTTOM,
 } from './constants';
+
+import { getComponentName } from './utils';
+
 import { Text } from './Text';
 
 const ContainerPropTypes = {
@@ -89,7 +93,7 @@ const withLabel = (Component, displayName = '') => {
   Container.propTypes = ContainerPropTypes;
   Container.defaultProps = ContainerDefaultProps;
 
-  Container.displayName = displayName || `withLabel(${Component.name})`;
+  Container.displayName = displayName || `withLabel(${getComponentName(Component)})`;
 
   return Container;
 };

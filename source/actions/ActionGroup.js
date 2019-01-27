@@ -5,16 +5,10 @@ import { ActionPropType } from './actions';
 import ToggleActionButton from './ToggleActionButton';
 import ActionIconButton from './ActionIconButton';
 
-const getKeyFromAction = (action) =>
-  typeof action === 'string' ? action : action.type;
+const getKeyFromAction = (action) => (typeof action === 'string' ? action : action.type);
 
 export const defaultButtonRenderer = (action, onAction, props) => (
-  <ActionIconButton
-    {...props}
-    key={getKeyFromAction(action)}
-    action={action}
-    onAction={onAction}
-  />
+  <ActionIconButton {...props} key={getKeyFromAction(action)} action={action} onAction={onAction} />
 );
 
 const ActionGroup = ({ actions, onAction, buttonRenderer, ...props }) =>
@@ -23,9 +17,7 @@ const ActionGroup = ({ actions, onAction, buttonRenderer, ...props }) =>
       return (
         <ToggleActionButton
           {...props}
-          key={toggleActions
-            .map((action) => getKeyFromAction(action))
-            .join('/')}
+          key={toggleActions.map((action) => getKeyFromAction(action)).join('/')}
           onAction={onAction}
           buttonRenderer={buttonRenderer}
           actions={toggleActions}

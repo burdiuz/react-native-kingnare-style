@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  ActionPropType,
-  getAction,
-  getActionType,
-  renderIconFromAction,
-} from './actions';
+import { ActionPropType, getAction, getActionType, renderIconFromAction } from './actions';
 
 import ActionIconButton from './ActionIconButton';
 
@@ -22,19 +17,39 @@ It displays first action from array
 and when onAction is being called, action returned from handler will become current action.
 */
 
+const getNextAction = (currentAction, actions) => actions[(actions.indexOf(currentAction) + 1) % actions.length];
+
 const defaultButtonRenderer = (action, onAction, props) => (
   <ActionIconButton {...props} action={action} onAction={onAction} />
 );
 
+const ToggleActionButtonView = ({ currentAction, onAction, actions, buttonRenderer, ...props }) => buttonRenderer(currentAction, (action) => onAction(action, actions), props);
+
+ToggleActionButtonView.propTypes = {
+  actions: PropTypes.arrayOf(ActionPropType).isRequired,
+  currentAction: ActionPropType,
+  onAction: PropTypes.func.isRequired,
+  buttonRenderer: PropTypes.func,
+  onPress: PropTypes.func,
+};
+
+ToggleActionButtonView.defaultProps = {
+  buttonRenderer: defaultButtonRenderer,
+  onPress: undefined,
+};
+
+
 class ToggleActionButton extends Component {
   static propTypes = {
     actions: PropTypes.arrayOf(ActionPropType).isRequired,
-    buttonRenderer: PropTypes.func.isRequired,
     onAction: PropTypes.func.isRequired,
+    buttonRenderer: PropTypes.func,
+    onPress: PropTypes.func,
   };
 
   static defaultProps = {
     buttonRenderer: defaultButtonRenderer,
+    onPress: undefined,
   };
 
   constructor(props, ...args) {
@@ -45,9 +60,9 @@ class ToggleActionButton extends Component {
     this.state = { actions, currentAction: actions[0] };
   }
 
-  componentWillReceiveProps({ actions }) {
-    if (actions !== this.props.actions) {
-      const actions = props.actions.map(getAction);
+  componentWillReceiveProps({ actions: newActions }) {
+    if (newActions !== this.props.actions) {
+      const actions = newActions.map(getAction);
 
       this.setState({
         actions,
@@ -56,44 +71,29 @@ class ToggleActionButton extends Component {
     }
   }
 
-  onPress = (event) => {
-    const { onPress, onAction } = this.props;
-
-    if (onPress) {
-      onPress(event);
-    }
-
-    if (onAction) {
-      onAction(this.state.action);
-    }
-  };
-
-  onAction = (action) => {
+  onAction = (action, actions) => {
     const { onAction } = this.props;
 
     if (onAction) {
-      const result = onAction(action, this.state.actions);
+      const result = onAction(action, actions);
       if (result === false) {
         return;
       }
     }
 
-    this.next();
+    this.next(action);
   };
 
-  next() {
-    const { actions, currentAction } = this.state;
-    const nextAction =
-      actions[(actions.indexOf(currentAction) + 1) % actions.length];
+  next(action) {
+    const { actions } = this.state;
 
-    this.setState({ currentAction: nextAction });
+    this.setState({ currentAction: getNextAction(action, actions) });
   }
 
   render() {
-    const { actions, buttonRenderer, ...props } = this.props;
-    const { currentAction } = this.state;
+    const { actions, currentAction } = this.state;
 
-    return buttonRenderer(currentAction, this.onAction, props);
+    return <ToggleActionButtonView {...this.props} currentAction={currentAction} actions={actions} onAction={this.onAction}/>;
   }
 }
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { getComponentName } from '../utils';
+
 const WrapperPropTypes = {
   style: PropTypes.any,
   inheritStyle: PropTypes.bool,
@@ -23,7 +25,7 @@ const withStyleInheritance = (Component, defaultStyle, displayName = '') => {
   Wrapper.defaultProps = WrapperDefaultProps;
 
   Wrapper.displayName =
-    displayName || `withStyleInheritance(${Component.name})`;
+    displayName || `withStyleInheritance(${getComponentName(Component)})`;
 
   return Wrapper;
 };
