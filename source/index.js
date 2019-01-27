@@ -11,4 +11,9 @@ export * from './Form';
 export * from './constants';
 export { default as withLabel } from './withLabel';
 export { default as withStyle, withStyles } from './withStyle';
-export { default as SwipeableXContainer } from './SwipeableXContainer';
+export {
+  default as SwipeableXContainer,
+  SWIPE_CENTER,
+  SWIPE_LEFT,
+  SWIPE_RIGHT
+} from './SwipeableXContainer';

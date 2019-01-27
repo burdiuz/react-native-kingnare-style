@@ -84,22 +84,22 @@ class SwipeableXContainer extends Component {
   /**
    * @public
    */
-  left(callback) {
-    this.animateTopTo(SWIPE_LEFT, callback);
+  left(callback, duration) {
+    this.animateTopTo(SWIPE_LEFT, callback, duration);
   }
 
   /**
    * @public
    */
-  right(callback) {
-    this.animateTopTo(SWIPE_RIGHT, callback);
+  right(callback, duration) {
+    this.animateTopTo(SWIPE_RIGHT, callback, duration);
   }
 
   /**
    * @public
    */
-  center(callback) {
-    this.animateTopTo(SWIPE_CENTER, callback);
+  center(callback, duration) {
+    this.animateTopTo(SWIPE_CENTER, callback, duration);
   }
 
   /**
@@ -271,7 +271,7 @@ class SwipeableXContainer extends Component {
   /**
    * @private
    */
-  animateTopTo(swipe, duration = 300, handler) {
+  animateTopTo(swipe, handler, duration = 300) {
     const { width, position } = this.state;
     const toValue = calculateTopPosition(swipe, width, this.props.swipeShiftMultiplier);
 
