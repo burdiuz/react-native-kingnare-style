@@ -122,7 +122,14 @@ class SwipeableXContainer extends Component {
     const adx = Math.abs(dx);
 
     if (numberActiveTouches === 1 && adx > 10 && adx > Math.abs(dy) * 3) {
-      return true;
+      const { swipeLeftPanelRenderer, swipeRightPanelRenderer } = this.props;
+      const { position } = this.state;
+      return (
+        (dx < 0 &&
+          ((position === SWIPE_CENTER && swipeLeftPanelRenderer) || position === SWIPE_RIGHT)) ||
+        (dx > 0 &&
+          ((position === SWIPE_CENTER && swipeRightPanelRenderer) || position === SWIPE_LEFT))
+      );
     }
 
     return false;
