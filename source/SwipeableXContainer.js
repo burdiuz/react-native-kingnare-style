@@ -34,10 +34,10 @@ class SwipeableXContainer extends Component {
     contentContainerStyle: PropTypes.any,
   };
   static defaultProps = {
+    onSwipeStart: undefined,
+    onSwipeConfirm: undefined,
+    onSwipeFinish: undefined,
     onSwipeStateChange: undefined,
-    onSwipeRight: undefined,
-    onSwipeLeft: undefined,
-    onSwipeCenter: undefined,
     swipeLeftPanelRenderer: undefined,
     swipeRightPanelRenderer: undefined,
     swipeThresholdMultiplier: 0.15,
@@ -54,11 +54,16 @@ class SwipeableXContainer extends Component {
     this.topPosXValue = 0;
     this.touchPosXValue = 0;
 
-    this.state = { x: 0, y: 0, width: 0, height: 0, position: SWIPE_CENTER };
+    this.state = { width: 0, height: 0, position: SWIPE_CENTER };
 
     this.responder = PanResponder.create({
+      /*
+      Bubbling version of this handler may not work if gesture captured earlier
+      in touchable child view.
+      */
+      onStartShouldSetPanResponderCapture: this.handleStartShouldSetPanResponderCapture,
       onStartShouldSetPanResponder: this.handleStartShouldSetPanResponder,
-      onMoveShouldSetPanResponder: this.handleMoveShouldSetPanResponder,
+      onMoveShouldSetPanResponderCapture: this.handleMoveShouldSetPanResponderCapture,
       onPanResponderGrant: this.handlePanResponderGrant,
       onPanResponderMove: this.handlePanResponderMove,
       onPanResponderRelease: this.handlePanResponderRelease,
@@ -105,11 +110,7 @@ class SwipeableXContainer extends Component {
   /**
    * @private
    */
-  handleStartShouldSetPanResponder = ({ nativeEvent: { pageX, pageY } }) => {
-    const { x, y } = this.state;
-
-    this.touchX = pageX - x;
-    this.touchY = pageY - y;
+  handleStartShouldSetPanResponderCapture = () => {
     this.touchPosXValue = this.topPosXValue;
 
     return false;
@@ -118,10 +119,13 @@ class SwipeableXContainer extends Component {
   /**
    * @private
    */
-  handleMoveShouldSetPanResponder = (_, { dx, dy, numberActiveTouches }) => {
+  handleMoveShouldSetPanResponderCapture = (_, { dx, dy, numberActiveTouches }) => {
     const adx = Math.abs(dx);
 
-    if (numberActiveTouches === 1 && adx > 10 && adx > Math.abs(dy) * 3) {
+    if (
+      numberActiveTouches === 1 &&
+      (this.props.forceCaptire || (adx > 10 && adx > Math.abs(dy) * 3))
+    ) {
       const { swipeLeftPanelRenderer, swipeRightPanelRenderer } = this.props;
       const { position } = this.state;
       return (
@@ -134,6 +138,11 @@ class SwipeableXContainer extends Component {
 
     return false;
   };
+
+  /**
+   * @private
+   */
+  handleStartShouldSetPanResponder = () => true;
 
   /**
    * @private
@@ -345,10 +354,10 @@ class SwipeableXContainer extends Component {
         {...props}
         onLayout={({
           nativeEvent: {
-            layout: { x, y, width, height },
+            layout: { width, height },
           },
         }) => {
-          this.setState({ x, y, width, height });
+          this.setState({ width, height });
         }}
         {...this.responder.panHandlers}
       >

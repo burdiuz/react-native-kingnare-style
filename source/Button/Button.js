@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TouchableHighlight, View, StyleSheet } from 'react-native';
+import { TouchableHighlight, View } from 'react-native';
 
 import { getButtonStyle } from './utils';
 
@@ -12,11 +12,10 @@ import {
   BUTTON_SELECTED_HIGHLIGHT_COLOR,
 } from './styles';
 
-export const makeHighlightComponent = (
-  styles,
-  contentContainerStyles,
-  highlightColor,
-) => (props) => {
+export const makeHighlightComponent = (styles, contentContainerStyles, highlightColor) => (
+  props,
+) => {
+  // eslint-disable-next-line react/prop-types
   const { disabled, style, contentContainerStyle, children } = props;
   return (
     <TouchableHighlight
@@ -24,12 +23,7 @@ export const makeHighlightComponent = (
       style={[getButtonStyle(highlightStyles, disabled), style]}
       underlayColor={highlightColor}
     >
-      <View
-        style={[
-          getButtonStyle(highlightContainerStyles, disabled),
-          contentContainerStyle,
-        ]}
-      >
+      <View style={[getButtonStyle(highlightContainerStyles, disabled), contentContainerStyle]}>
         {children}
       </View>
     </TouchableHighlight>
@@ -43,27 +37,14 @@ export const ButtonHighlight = makeHighlightComponent(
 );
 
 const Button = (props) => {
-  const {
-    selected,
-    disabled,
-    style,
-    contentContainerStyle,
-    children,
-    ...highlightProps
-  } = props;
+  const { selected, disabled, style, contentContainerStyle, children, ...highlightProps } = props;
 
-  let highlightColor = selected
-    ? BUTTON_SELECTED_HIGHLIGHT_COLOR
-    : BUTTON_HIGHLIGHT_COLOR;
+  const highlightColor = selected ? BUTTON_SELECTED_HIGHLIGHT_COLOR : BUTTON_HIGHLIGHT_COLOR;
 
   return (
     <TouchableHighlight
       {...highlightProps}
-      style={[
-        getButtonStyle(highlightStyles, disabled, selected),
-        buttonStyles.button,
-        style,
-      ]}
+      style={[getButtonStyle(highlightStyles, disabled, selected), buttonStyles.button, style]}
       disabled={disabled}
       underlayColor={highlightColor}
     >
@@ -78,6 +59,21 @@ const Button = (props) => {
       </View>
     </TouchableHighlight>
   );
+};
+
+Button.propTypes = {
+  children: PropTypes.node,
+  style: PropTypes.any,
+  contentContainerStyle: PropTypes.any,
+  selected: PropTypes.bool,
+  disabled: PropTypes.bool,
+};
+Button.defaultProps = {
+  children: undefined,
+  style: undefined,
+  contentContainerStyle: undefined,
+  selected: false,
+  disabled: false,
 };
 
 export default Button;

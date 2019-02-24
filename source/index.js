@@ -15,5 +15,7 @@ export {
   default as SwipeableXContainer,
   SWIPE_CENTER,
   SWIPE_LEFT,
-  SWIPE_RIGHT
+  SWIPE_RIGHT,
 } from './SwipeableXContainer';
+export { default as MoreMenu } from './MoreMenu';
+export { default as Select } from './Select';

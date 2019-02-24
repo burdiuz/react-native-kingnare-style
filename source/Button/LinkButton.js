@@ -18,7 +18,7 @@ const LinkButton = (props) => {
       underlayColor={BUTTON_HIGHLIGHT_COLOR}
       disabled={disabled}
     >
-      <Text style={[getButtonStyle(linkStyles, disabled), labelStyle]}>
+      <Text style={[getButtonStyle(linkStyles, disabled), labelStyle]} numberOfLines={1}>
         {label}
       </Text>
     </TouchableHighlight>

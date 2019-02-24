@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TouchableHighlight, View, StyleSheet } from 'react-native';
+import { TouchableHighlight, View } from 'react-native';
 
 import {
   TEXT_COLOR,

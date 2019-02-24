@@ -11,7 +11,11 @@ const Area = ({ children, contentContainerStyle, ...props }) => (
   </View>
 );
 
-export default withStyles(Area, {
-  style: styles.area,
-  contentContainerStyle: styles.areaInternal,
-}, 'Area');
+export default withStyles(
+  Area,
+  {
+    style: styles.area,
+    contentContainerStyle: styles.areaInternal,
+  },
+  'Area',
+);

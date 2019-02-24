@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { ActionPropType, getAction, getActionType, renderIconFromAction } from './actions';
+import { ActionPropType, getAction } from './actions';
 
 import ActionIconButton from './ActionIconButton';
 
@@ -17,13 +17,15 @@ It displays first action from array
 and when onAction is being called, action returned from handler will become current action.
 */
 
-const getNextAction = (currentAction, actions) => actions[(actions.indexOf(currentAction) + 1) % actions.length];
+const getNextAction = (currentAction, actions) =>
+  actions[(actions.indexOf(currentAction) + 1) % actions.length];
 
-const defaultButtonRenderer = (action, onAction, props) => (
+export const defaultButtonRenderer = (action, onAction, props) => (
   <ActionIconButton {...props} action={action} onAction={onAction} />
 );
 
-const ToggleActionButtonView = ({ currentAction, onAction, actions, buttonRenderer, ...props }) => buttonRenderer(currentAction, (action) => onAction(action, actions), props);
+const ToggleActionButtonView = ({ currentAction, onAction, actions, buttonRenderer, ...props }) =>
+  buttonRenderer(currentAction, (action) => onAction(action, actions), props);
 
 ToggleActionButtonView.propTypes = {
   actions: PropTypes.arrayOf(ActionPropType).isRequired,
@@ -38,37 +40,62 @@ ToggleActionButtonView.defaultProps = {
   onPress: undefined,
 };
 
-
 class ToggleActionButton extends Component {
   static propTypes = {
     actions: PropTypes.arrayOf(ActionPropType).isRequired,
     onAction: PropTypes.func.isRequired,
     buttonRenderer: PropTypes.func,
+    defaultAction: ActionPropType,
+    currentAction: ActionPropType,
     onPress: PropTypes.func,
   };
 
   static defaultProps = {
     buttonRenderer: defaultButtonRenderer,
     onPress: undefined,
+    defaultAction: undefined,
+    currentAction: undefined,
   };
+
+  static getDerivedComponentState(
+    { actions: propsActions, currentAction: _propsAction, defaultAction: _defAction },
+    { actions, currentAction },
+  ) {
+    const propsAction = getAction(_propsAction);
+    const defaultAction = getAction(_defAction);
+    let changed = false;
+
+    const nextActions = propsActions.map((item, index) => {
+      const prev = actions && actions[index];
+      const action = getAction(item);
+
+      if (!prev || prev !== action) {
+        changed = true;
+      }
+
+      return action;
+    });
+
+    changed =
+      changed ||
+      (propsAction && propsAction !== currentAction) ||
+      (defaultAction && !currentAction);
+
+    if (!changed) {
+      return null;
+    }
+
+    return {
+      actions: nextActions,
+      currentAction:
+        propsAction || currentAction || defaultAction || nextActions[0],
+    };
+  }
 
   constructor(props, ...args) {
     super(props, ...args);
 
-    const actions = props.actions.map(getAction);
-
-    this.state = { actions, currentAction: actions[0] };
-  }
-
-  componentWillReceiveProps({ actions: newActions }) {
-    if (newActions !== this.props.actions) {
-      const actions = newActions.map(getAction);
-
-      this.setState({
-        actions,
-        currentAction: actions[0],
-      });
-    }
+    this.state = ToggleActionButton.getDerivedComponentState(props, {});
   }
 
   onAction = (action, actions) => {
@@ -93,7 +120,14 @@ class ToggleActionButton extends Component {
   render() {
     const { actions, currentAction } = this.state;
 
-    return <ToggleActionButtonView {...this.props} currentAction={currentAction} actions={actions} onAction={this.onAction}/>;
+    return (
+      <ToggleActionButtonView
+        {...this.props}
+        currentAction={currentAction}
+        actions={actions}
+        onAction={this.onAction}
+      />
+    );
   }
 }
 

@@ -6,6 +6,7 @@ import TextButton from './TextButton';
 import LinkButton from './LinkButton';
 import { Radio, RadioButton } from './Radio';
 import { CheckBox, CheckBoxButton } from './CheckBox';
+import { TabButtonTop, TabButtonBottom } from './Tab';
 
 export {
   Button,
@@ -19,4 +20,6 @@ export {
   RadioButton,
   CheckBox,
   CheckBoxButton,
+  TabButtonTop,
+  TabButtonBottom,
 };

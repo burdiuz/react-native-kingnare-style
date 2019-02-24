@@ -2,37 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
 
-import {
-  TEXT_COLOR,
-  TEXT_ACTIVE_COLOR,
-  TEXT_DISABLED_COLOR,
-} from '../constants';
+import { TEXT_COLOR, TEXT_ACTIVE_COLOR, TEXT_DISABLED_COLOR } from '../constants';
 
 import { getButtonStyle } from './utils';
 
 import { Text } from '../Text';
 
 import Button from './Button';
-
-const TextButton = ({ label, labelStyle, selected, disabled, ...props }) => (
-  <Button {...props} selected={selected} disabled={disabled}>
-    <Text
-      style={[
-        styles.base,
-        getButtonStyle(styles, disabled, selected),
-        labelStyle,
-      ]}
-    >
-      {label}
-    </Text>
-  </Button>
-);
-
-TextButton.propTypes = {
-  label: PropTypes.string.isRequired,
-};
-
-TextButton.defaultProps = {};
 
 const styles = StyleSheet.create({
   base: {
@@ -51,5 +27,26 @@ const styles = StyleSheet.create({
     color: TEXT_DISABLED_COLOR,
   },
 });
+
+const TextButton = ({ label, labelStyle, selected, disabled, ...props }) => (
+  <Button {...props} selected={selected} disabled={disabled}>
+    <Text style={[styles.base, getButtonStyle(styles, disabled, selected), labelStyle]}>
+      {label}
+    </Text>
+  </Button>
+);
+
+TextButton.propTypes = {
+  label: PropTypes.string.isRequired,
+  labelStyle: PropTypes.any,
+  selected: PropTypes.bool,
+  disabled: PropTypes.bool,
+};
+
+TextButton.defaultProps = {
+  labelStyle: undefined,
+  selected: false,
+  disabled: false,
+};
 
 export default TextButton;

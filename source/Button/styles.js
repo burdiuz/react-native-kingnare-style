@@ -211,3 +211,40 @@ export const linkStyles = StyleSheet.create({
     textDecorationColor: TEXT_DISABLED_COLOR,
   },
 });
+
+export const iconButton = StyleSheet.create({
+  icon: {
+    width: ELEMENT_MIN_SIZE * 0.75,
+    height: ELEMENT_MIN_SIZE * 0.75,
+  },
+  button: {
+    width: ELEMENT_MIN_SIZE,
+  },
+});
+
+export const tabStyles = StyleSheet.create({
+  top: {
+    borderRadius: 4,
+    borderBottomWidth: 0,
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: 0,
+  },
+  topContent: {
+    borderRadius: 4,
+    borderBottomWidth: 0,
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: 0,
+  },
+  bottom: {
+    borderRadius: 4,
+    borderTopWidth: 0,
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 0,
+  },
+  bottomContent: {
+    borderRadius: 4,
+    borderTopWidth: 0,
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 0,
+  },
+});
