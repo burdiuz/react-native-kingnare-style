@@ -2,15 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableHighlight, View } from 'react-native';
 
-import {
-  TEXT_COLOR,
-  TEXT_ACTIVE_COLOR,
-  TEXT_DISABLED_COLOR,
-  DARK_BORDER_COLOR,
-  LIGHT_BORDER_COLOR,
-  ELEMENT_MIN_SIZE,
-} from '../constants';
-
 import { getButtonStyle } from './utils';
 
 import withLabel from '../withLabel';
@@ -23,12 +14,8 @@ import {
   BUTTON_SELECTED_HIGHLIGHT_COLOR,
 } from './styles';
 
-import Button from './Button';
-
 export const RadioButton = ({ selected, disabled, style, ...props }) => {
-  let highlightColor = selected
-    ? BUTTON_SELECTED_HIGHLIGHT_COLOR
-    : BUTTON_HIGHLIGHT_COLOR;
+  const highlightColor = selected ? BUTTON_SELECTED_HIGHLIGHT_COLOR : BUTTON_HIGHLIGHT_COLOR;
 
   return (
     <TouchableHighlight
@@ -37,17 +24,9 @@ export const RadioButton = ({ selected, disabled, style, ...props }) => {
       disabled={disabled}
       underlayColor={highlightColor}
     >
-      <View
-        style={[
-          radioStyles.outerCircle,
-          getButtonStyle(radioOuterStyles, disabled, selected),
-        ]}
-      >
+      <View style={[radioStyles.outerCircle, getButtonStyle(radioOuterStyles, disabled, selected)]}>
         <View
-          style={[
-            radioStyles.innerCircle,
-            getButtonStyle(radioInnerStyles, disabled, selected),
-          ]}
+          style={[radioStyles.innerCircle, getButtonStyle(radioInnerStyles, disabled, selected)]}
         />
       </View>
     </TouchableHighlight>
@@ -64,4 +43,4 @@ RadioButton.defaultProps = {
   selected: false,
 };
 
-export const Radio = withLabel(RadioButton, 'Radio');
+export const Radio = withLabel(RadioButton, radioStyles.label, 'Radio');

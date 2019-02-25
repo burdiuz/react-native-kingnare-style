@@ -1,12 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
-
-import { getComponentName } from '../utils';
 
 import withStyle from '../withStyle';
 
-const GROUP_PADDING = 10;
+export const GROUP_PADDING = 10;
+
 const paddings = {
   paddingLeft: GROUP_PADDING,
   paddingRight: GROUP_PADDING,

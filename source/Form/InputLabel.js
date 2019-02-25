@@ -30,7 +30,7 @@ export const withInputLabel = (Component, displayName = '') => {
     </>
   );
 
-  Wrapper.displayName = displayName || `withLabel(${getComponentName(Component)})`;
+  Wrapper.displayName = displayName || `withInputLabel(${getComponentName(Component)})`;
 
   return Wrapper;
 };

@@ -1,39 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyleSheet } from 'react-native';
 import isFunction from '@actualwave/is-function';
 
-import { ELEMENT_MIN_SIZE } from './constants';
-import { MoreIcon, MoreSelectedIcon, MoreDisabledIcon } from './assets/MoreIcon';
 import { BlockingModal } from './Modal/Modal';
 import { bigModalDefaultStyle } from './Modal/utils';
-import { BmpIconButton } from './Button/IconButton';
-import { iconButton } from './Button/styles';
+import MoreMenuButtonView from './Button/MoreMenuButton';
 import withContentSibling from './withContentSibling';
-
-const {
-  defaultProps: { iconRenderer: defaultBmpIconRenderer },
-} = BmpIconButton;
-
-const moreIconRenderer = (props) => {
-  const Icon = defaultBmpIconRenderer(props);
-
-  return <Icon style={iconButton.icon} />;
-};
 
 const MoreMenuButton = (props) => {
   const { showContent, contentContainerStyle, ...buttonProps } = props;
 
-  return (
-    <BmpIconButton
-      iconRenderer={moreIconRenderer}
-      icon={MoreIcon}
-      selectedIcon={MoreSelectedIcon}
-      disabledIcon={MoreDisabledIcon}
-      {...buttonProps}
-      onPress={() => showContent(props)}
-    />
-  );
+  return <MoreMenuButtonView {...buttonProps} onPress={() => showContent(props)} />;
 };
 
 MoreMenuButton.propTypes = {

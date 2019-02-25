@@ -4,10 +4,21 @@ import { View } from 'react-native';
 import withStyle from '../withStyle';
 import styles from './styles';
 
-const HRule = (props) => (
-  <View {...props}>
-    <View style={styles.hRule} />
-  </View>
-);
+const createHRuleView = (ruleStyle) => {
+  const HRuleView = (props) => (
+    <View {...props}>
+      <View style={ruleStyle} />
+    </View>
+  );
 
-export default withStyle(HRule, styles.hContainer, 'HRule');
+  HRuleView.displayName = 'HRuleView';
+
+  return HRuleView;
+};
+
+const HRule = withStyle(createHRuleView(styles.hRule), styles.hContainer, 'HRule');
+
+// HRule with inverted colors
+export const HIRule = withStyle(createHRuleView(styles.hiRule), styles.hContainer, 'HIRule');
+
+export default HRule;

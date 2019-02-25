@@ -74,4 +74,4 @@ CheckBoxButton.defaultProps = {
   selected: false,
 };
 
-export const CheckBox = withLabel(CheckBoxButton, 'CheckBox');
+export const CheckBox = withLabel(CheckBoxButton, null, 'CheckBox');

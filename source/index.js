@@ -9,6 +9,7 @@ export * from './Screen';
 export * from './Text';
 export * from './Form';
 export * from './constants';
+export * from './select';
 export { default as withLabel } from './withLabel';
 export { default as withStyle, withStyles } from './withStyle';
 export {
@@ -18,4 +19,3 @@ export {
   SWIPE_RIGHT,
 } from './SwipeableXContainer';
 export { default as MoreMenu } from './MoreMenu';
-export { default as Select } from './Select';
