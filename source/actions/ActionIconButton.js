@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { TouchableHighlight } from 'react-native';
 
 import { IconButton } from '../Button';
-import { ActionPropType, getAction, getActionType, renderIconFromAction } from './actions';
+import { renderIconFromAction } from './actions';
 import withActionButton from './withActionButton';
 
 const ActionIconButton = withActionButton(IconButton, {

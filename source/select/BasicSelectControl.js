@@ -28,11 +28,11 @@ const defaultSelectedItemRenderer = ({ selectedItem, placeholder }) => {
   return label;
 };
 
-const BasicSelectControl = ({ showContent, selectedItemRenderer, ...props }) => {
+const BasicSelectControl = ({ showContent, selectedItemRenderer, style, ...props }) => {
   return (
     <TouchableWithoutFeedback
       {...props}
-      style={selectStyles.touchable}
+      style={style ? [selectStyles.touchable, style] : selectStyles.touchable}
       onPress={() => showContent(props)}
     >
       <View style={selectStyles.wrapper}>

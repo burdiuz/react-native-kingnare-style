@@ -3,16 +3,19 @@ import PropTypes from 'prop-types';
 import isFunction from '@actualwave/is-function';
 
 import { getComponentName } from '../utils';
-import { ActionPropType, getAction, getActionType } from './actions';
+import { ActionPropType, getAction } from './actions';
 
 const withActionButton = (ButtonComponent, defaultProps = {}) => {
   class Wrapper extends Component {
     static propTypes = {
+      onPress: PropTypes.func,
       onAction: PropTypes.func.isRequired,
       action: ActionPropType.isRequired,
     };
 
-    static defaultProps = {};
+    static defaultProps = {
+      onPress: undefined,
+    };
 
     constructor(props) {
       super(props);

@@ -44,14 +44,18 @@ const withHostedModal = (
 
     return (
       <BlockingModal onRequestClose={combineCloseCallback(onRequestClose, close)} {...modalProps}>
-        <Component {...props} {...callbacksObj} />
+        <Component {...props} {...callbacksObj} close={close} />
       </BlockingModal>
     );
   };
 
   Wrapper.propTypes = {
-    onRequestClose: PropTypes.func.isRequired,
     close: PropTypes.func.isRequired,
+    onRequestClose: PropTypes.func,
+  };
+
+  Wrapper.defaultProps = {
+    onRequestClose: () => null,
   };
 
   Wrapper.renderer = (props, close) => (

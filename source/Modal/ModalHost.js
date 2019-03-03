@@ -23,7 +23,7 @@ const ConnectedModalHost = connect(
     list: getModalsList(store),
   }),
   {
-    close: closeModal,
+    close: hideModal,
   },
 )(ModalHost);
 */

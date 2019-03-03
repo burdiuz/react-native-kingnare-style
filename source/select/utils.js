@@ -1,3 +1,3 @@
 export const defaultListKeyExtractor = ({ label }) => label;
-export const defaultValueComparator = ({ value: value1 } = {}, { value: value2 } = {}) =>
-  value1 === value2;
+export const defaultValueComparator = (item1, item2) =>
+  Boolean(item1 && item2 && item1.value === item2.value);

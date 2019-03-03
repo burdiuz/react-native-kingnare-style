@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import isFunction from '@actualwave/is-function';
 
@@ -20,12 +20,19 @@ registerAction({
   title: 'Close',
 });
 
+let defaultCloseAction = ALERT_DEFAULT_CLOSE_ACTION;
+
+export const setDefaultAlertCloseAction = (action = ALERT_DEFAULT_CLOSE_ACTION) => {
+  defaultCloseAction = action;
+};
+
 const actionButtonRenderer = (action, onAction, props) => (
   <ActionTextButton
     {...props}
     key={typeof action === 'string' ? action : action.type}
     action={action}
     onAction={onAction}
+    style={alertStyles.button}
   />
 );
 
@@ -33,7 +40,7 @@ const Alert = ({ children, title, actions, onAction, close, closeRequestAction }
   let mainContent = isFunction(children) ? children() : children;
   let titleContent = isFunction(title) ? title() : title;
   const handleAction = (...args) => {
-    let result = close(...args);
+    const result = close(...args);
 
     return onAction ? onAction(...args) : result;
   };
@@ -82,8 +89,9 @@ Alert.propTypes = {
 
 Alert.defaultProps = {
   title: undefined,
-  actions: [ALERT_DEFAULT_CLOSE_ACTION],
-  closeRequestAction: ALERT_DEFAULT_CLOSE_ACTION,
+  onAction: undefined,
+  actions: [defaultCloseAction],
+  closeRequestAction: defaultCloseAction,
 };
 
 /*

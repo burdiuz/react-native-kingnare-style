@@ -56,4 +56,5 @@ export const alertStyles = StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 5,
   },
+  button: { marginLeft: 10 },
 });

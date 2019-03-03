@@ -12,6 +12,9 @@ export * from './constants';
 export * from './select';
 export { default as withLabel } from './withLabel';
 export { default as withStyle, withStyles } from './withStyle';
+export { default as withProps } from './withProps';
+export { default as withToggle } from './withToggle';
+export { default as withContentSibling } from './withContentSibling';
 export {
   default as SwipeableXContainer,
   SWIPE_CENTER,

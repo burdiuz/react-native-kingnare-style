@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { ActionPropType, getAction, getActionType, renderIconFromAction } from './actions';
-
 import ActionIconButton from './ActionIconButton';
 
 export const defaultButtonRenderer = (action, onAction, props) => (
   <ActionIconButton {...props} action={action} onAction={onAction} />
 );
 
-const defaultGetActionFromValue = ({actionToValue, value}) =>
+const defaultGetActionFromValue = ({ actionToValue, value }) =>
   Object.keys(actionToValue).find((type) => actionToValue[type] === value);
 
+  /*
+  WIP component which has values assigned to certain action types
+  */
 class ToggleValueButton extends Component {
   static propTypes = {
     value: PropTypes.any,

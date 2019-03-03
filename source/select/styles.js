@@ -5,13 +5,12 @@ import { GROUP_PADDING } from '../Form/Group';
 
 export const selectStyles = StyleSheet.create({
   touchable: {
-    flex: 1,
+    flex: 0,
     alignItems: 'stretch',
     minWidth: ELEMENT_MIN_SIZE * 3,
     height: ELEMENT_MIN_SIZE,
   },
   wrapper: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'stretch',
   },

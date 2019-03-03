@@ -1,4 +1,4 @@
-import Alert, { makeAlert } from './Alert';
+import Alert, { makeAlert, setDefaultAlertCloseAction } from './Alert';
 import Modal, { BlockingModal } from './Modal';
 import ModalHost from './ModalHost';
 import withHostedModal, { makeHostedModal } from './withHostedModal';
@@ -14,4 +14,5 @@ export {
   makeHostedModal,
   makeHostedModalRenderer,
   bigModalStyleProps,
+  setDefaultAlertCloseAction,
 };
