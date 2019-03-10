@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FlatList } from 'react-native';
-import isFunction from '@actualwave/is-function';
 
+import { callIfFunction } from '../utils';
 import { BlockingModal } from '../Modal/Modal';
 import { bigModalDefaultStyle } from '../Modal/utils';
 import LinkButton from '../Button/LinkButton';
@@ -67,7 +67,7 @@ const selectContentRenderer = (props, close) => {
 
   return (
     <BlockingModal style={contentContainerStyle} onRequestClose={close}>
-      {isFunction(children) ? children(props, close) : children}
+      {callIfFunction(children, props, close)}
     </BlockingModal>
   );
 };

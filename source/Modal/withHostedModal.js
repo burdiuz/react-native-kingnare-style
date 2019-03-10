@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isFunction from '@actualwave/is-function';
 
+import { callIfFunction } from '../utils';
 import { BlockingModal } from './Modal';
 
 const combineCloseCallback = (callback, close) => async (...args) => {
@@ -29,7 +30,7 @@ const withHostedModal = (
   defaultOnRequestClose = undefined,
 ) => {
   const Wrapper = ({ onRequestClose, close, ...props }) => {
-    let modalProps = baseModalProps;
+    const modalProps = callIfFunction(baseModalProps, props);
     const callbacksObj = {};
 
     callbacks.forEach((name) => {
@@ -37,10 +38,6 @@ const withHostedModal = (
 
       callbacksObj[name] = combineCloseCallback(callback, close);
     });
-
-    if (isFunction(baseModalProps)) {
-      modalProps = baseModalProps(props);
-    }
 
     return (
       <BlockingModal onRequestClose={combineCloseCallback(onRequestClose, close)} {...modalProps}>

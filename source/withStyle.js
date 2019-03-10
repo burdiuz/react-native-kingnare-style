@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import isFunction from '@actualwave/is-function';
 
-import { getComponentName } from './utils';
+import { getComponentName, callIfFunction } from './utils';
 
 const WrapperPropTypes = {
   style: PropTypes.any,
@@ -35,14 +34,7 @@ export const withStyles = (Component, styles = {}, displayName = '') => {
     const styleProps = {};
 
     styleKeys.forEach((key) => {
-      let defaultStyle;
-      const value = styles[key];
-
-      if (isFunction(value)) {
-        defaultStyle = value(props);
-      } else {
-        defaultStyle = value;
-      }
+      const defaultStyle = callIfFunction(styles[key], props);
 
       const { [key]: style } = props;
 

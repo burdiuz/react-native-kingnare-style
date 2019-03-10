@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import isFunction from '@actualwave/is-function';
 
+import { callIfFunction } from './utils';
 import { BlockingModal } from './Modal/Modal';
 import { bigModalDefaultStyle } from './Modal/utils';
 import MoreMenuButtonView from './Button/MoreMenuButton';
@@ -26,7 +26,7 @@ const moreContentRenderer = ({ children, contentContainerStyle }, close) => {
 
   return (
     <BlockingModal style={contentContainerStyle} onRequestClose={close}>
-      {isFunction(children) ? children(close) : children}
+      {callIfFunction(children, close)}
     </BlockingModal>
   );
 };

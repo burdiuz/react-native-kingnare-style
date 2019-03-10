@@ -1,16 +1,9 @@
 import React from 'react';
-import isFunction from '@actualwave/is-function';
 
-import { getComponentName } from './utils';
+import { getComponentName, callIfFunction } from './utils';
 
 const withProps = (Component, augmentProps, displayName = '') => {
-  const Wrapper = (props) => {
-    if (isFunction(augmentProps)) {
-      return <Component {...augmentProps(props)} />;
-    }
-
-    return <Component {...props} {...augmentProps} />;
-  };
+  const Wrapper = (props) => <Component {...props} {...callIfFunction(augmentProps, props)} />;
 
   Wrapper.displayName = displayName || `withProps(${getComponentName(Component)})`;
 

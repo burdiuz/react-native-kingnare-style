@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isFunction from '@actualwave/is-function';
 
-import { getComponentName } from '../utils';
+import { getComponentName, callIfFunction } from '../utils';
 import { ActionPropType, getAction } from './actions';
 
 const withActionButton = (ButtonComponent, defaultProps = {}) => {
@@ -42,11 +42,13 @@ const withActionButton = (ButtonComponent, defaultProps = {}) => {
     };
 
     render() {
-      const baseProps = isFunction(defaultProps)
-        ? defaultProps(this.state.action, this.props)
-        : defaultProps;
-
-      return <ButtonComponent {...baseProps} {...this.props} onPress={this.onPress} />;
+      return (
+        <ButtonComponent
+          {...callIfFunction(defaultProps, this.state.action, this.props)}
+          {...this.props}
+          onPress={this.onPress}
+        />
+      );
     }
   }
 

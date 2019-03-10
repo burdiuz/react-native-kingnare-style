@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import isFunction from '@actualwave/is-function';
 
+import { callIfFunction } from '../utils';
 import ActionGroup from '../actions/ActionGroup';
 import ActionTextButton from '../actions/ActionTextButton';
 import { registerAction, ActionPropType } from '../actions/actions';
@@ -37,8 +37,9 @@ const actionButtonRenderer = (action, onAction, props) => (
 );
 
 const Alert = ({ children, title, actions, onAction, close, closeRequestAction }) => {
-  let mainContent = isFunction(children) ? children() : children;
-  let titleContent = isFunction(title) ? title() : title;
+  let mainContent = callIfFunction(children);
+  let titleContent = callIfFunction(title);
+
   const handleAction = (...args) => {
     const result = close(...args);
 
