@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, Animated, Easing } from 'react-native';
 
-import Area from './Area/Area';
-
 const { View: AnimatedView } = Animated;
 
 const progress = require('react-native-kingnare-style-assets/progress.png');
@@ -12,7 +10,9 @@ class InfiniteProgressBar extends Component {
     super(props);
 
     this.state = { images: [], width: 0 };
+
     this.left = new Animated.Value(-45);
+
     Animated.loop(
       Animated.timing(this.left, {
         toValue: 0,
@@ -43,7 +43,7 @@ class InfiniteProgressBar extends Component {
     const { images } = this.state;
 
     return (
-      <View onLayout={this.handleLayout} style={[{overflow: 'hidden'}, this.props.style]}>
+      <View onLayout={this.handleLayout} style={[{ overflow: 'hidden', padding: 10 }, this.props.style]}>
         <AnimatedView
           style={{
             transform: [
@@ -51,8 +51,6 @@ class InfiniteProgressBar extends Component {
                 translateX: this.left,
               },
             ],
-            width: '100%',
-            height: '100%',
             flexDirection: 'row',
             justifyContent: 'flex-start',
             alignItems: 'stretch',

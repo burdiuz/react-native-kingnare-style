@@ -11,6 +11,7 @@ export * from './Form';
 export * from './constants';
 export * from './select';
 export * from './status';
+export * from './layout';
 export { default as withLabel } from './withLabel';
 export { default as withStyle, withStyles } from './withStyle';
 export { default as withProps } from './withProps';

@@ -24,10 +24,11 @@ const combineCloseCallback = (callback, close) => async (...args) => {
   callbacks are required
 */
 const withHostedModal = (
-  Component,
+  ContentComponent,
   callbacks,
   baseModalProps = {},
   defaultOnRequestClose = undefined,
+  ModalComponent = BlockingModal,
 ) => {
   const Wrapper = ({ onRequestClose, close, ...props }) => {
     const modalProps = callIfFunction(baseModalProps, props);
@@ -40,9 +41,9 @@ const withHostedModal = (
     });
 
     return (
-      <BlockingModal onRequestClose={combineCloseCallback(onRequestClose, close)} {...modalProps}>
-        <Component {...props} {...callbacksObj} close={close} />
-      </BlockingModal>
+      <ModalComponent onRequestClose={combineCloseCallback(onRequestClose, close)} {...modalProps}>
+        <ContentComponent {...props} {...callbacksObj} close={close} />
+      </ModalComponent>
     );
   };
 
