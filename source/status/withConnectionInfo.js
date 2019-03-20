@@ -16,7 +16,7 @@ const withConnectionInfo = (WrappedComponent, hideWhenNotAvailable = true, displ
       this.init();
     }
 
-    async init () {
+    async init() {
       NetInfo.addEventListener('connectionChange', this.handleConnectionInfoChange);
 
       const info = await NetInfo.getConnectionInfo();
@@ -42,7 +42,7 @@ const withConnectionInfo = (WrappedComponent, hideWhenNotAvailable = true, displ
         return null;
       }
 
-      return <WrappedComponent {...this.props} connectionInfo={this.state.connectionInfo} />;
+      return <WrappedComponent {...this.props} connectionInfo={connectionInfo} />;
     }
   }
 

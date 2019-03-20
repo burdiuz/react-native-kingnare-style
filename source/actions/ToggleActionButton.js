@@ -92,8 +92,8 @@ class ToggleActionButton extends Component {
     };
   }
 
-  constructor(props, ...args) {
-    super(props, ...args);
+  constructor(props) {
+    super(props);
 
     this.state = ToggleActionButton.getDerivedComponentState(props, {});
   }

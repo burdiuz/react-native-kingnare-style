@@ -38,7 +38,7 @@ const withConnected = (WrappedComponent, hideWhenNotAvailable = true, displayNam
         return null;
       }
 
-      return <WrappedComponent {...this.props} connected={this.state.connected} />;
+      return <WrappedComponent {...this.props} connected={connected} />;
     }
   }
 
