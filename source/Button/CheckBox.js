@@ -23,12 +23,10 @@ import {
   BUTTON_SELECTED_HIGHLIGHT_COLOR,
 } from './styles';
 
-import Button from './Button';
-
 import { CheckIcon, CheckDisabledIcon } from '../assets/CheckIcon';
 
 export const CheckBoxButton = ({ selected, disabled, style, ...props }) => {
-  let highlightColor = selected
+  const highlightColor = selected
     ? BUTTON_SELECTED_HIGHLIGHT_COLOR
     : BUTTON_HIGHLIGHT_COLOR;
 
@@ -38,6 +36,8 @@ export const CheckBoxButton = ({ selected, disabled, style, ...props }) => {
     const Icon = disabled ? CheckDisabledIcon : CheckIcon;
     icon = <Icon style={checkBoxStyles.icon} />;
   }
+
+  console.log(disabled);
 
   return (
     <TouchableHighlight

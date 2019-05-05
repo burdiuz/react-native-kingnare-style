@@ -3,35 +3,28 @@ import { View } from 'react-native';
 
 import { withStyles } from '../withStyle';
 import Area from '../Area/Area';
-import BaseModal, { separateModalProps } from '../BaseModal';
+import { createBaseModal, renderPassiveBlockingView, separateModalProps } from '../BaseModal';
 
 import { modalStyles } from './styles';
 
-const crateModal = (ContainerComponent = Area) => ({
-  areaStyle,
-  onCloseOutside,
-  onRequestClose,
-  ...allProps
-}) => {
-  const { modalProps, props } = separateModalProps(allProps);
+const crateModal = (ContainerComponent = Area, renderBackground = undefined) => {
+  const BaseModal = createBaseModal(renderBackground);
 
-  return (
-    <BaseModal
-      {...modalProps}
-      onPress={onCloseOutside}
-      onRequestClose={onRequestClose}
-    >
-      <View style={areaStyle}>
-        <ContainerComponent {...props} />
-      </View>
-    </BaseModal>
-  );
+  return ({ areaStyle, onRequestClose, ...allProps }) => {
+    const { modalProps, props } = separateModalProps(allProps);
+
+    return (
+      <BaseModal {...modalProps} onRequestClose={onRequestClose}>
+        <View style={areaStyle}>
+          <ContainerComponent {...props} />
+        </View>
+      </BaseModal>
+    );
+  };
 };
 
-const Modal = crateModal();
-
 export const BlockingModal = withStyles(
-  Modal,
+  crateModal(undefined, renderPassiveBlockingView),
   {
     areaStyle: modalStyles.blocking,
     style: modalStyles.container,
@@ -41,7 +34,7 @@ export const BlockingModal = withStyles(
 );
 
 export default withStyles(
-  Modal,
+  crateModal(),
   {
     areaStyle: modalStyles.nonblocking,
     style: modalStyles.container,

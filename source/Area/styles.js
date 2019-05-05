@@ -22,7 +22,8 @@ export default StyleSheet.create({
     borderColor: LIGHT_BORDER_COLOR,
   },
   areaInternal: {
-    flex: 1,
+    flexShrink: 0,
+    flexGrow: 1,
     borderRadius: 2,
     borderWidth: 2,
     borderColor: DARK_BORDER_COLOR,

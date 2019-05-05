@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableWithoutFeedback } from 'react-native';
 
@@ -28,22 +28,24 @@ const defaultSelectedItemRenderer = ({ selectedItem, placeholder }) => {
   return label;
 };
 
-const BasicSelectControl = ({ showContent, selectedItemRenderer, style, ...props }) => {
-  return (
-    <TouchableWithoutFeedback
-      {...props}
-      style={style ? [selectStyles.touchable, style] : selectStyles.touchable}
-      onPress={() => showContent(props)}
-    >
-      <View style={selectStyles.wrapper}>
-        <Area style={selectStyles.area} contentContainerStyle={selectStyles.areaContent}>
-          {selectedItemRenderer(props)}
-        </Area>
-        <DropDownButton onPress={() => showContent(props)} />
-      </View>
-    </TouchableWithoutFeedback>
-  );
-};
+const BasicSelectControl = forwardRef(
+  ({ showContent, selectedItemRenderer, style, ...props }, ref) => {
+    return (
+      <TouchableWithoutFeedback
+        {...props}
+        style={style ? [selectStyles.touchable, style] : selectStyles.touchable}
+        onPress={() => showContent(props)}
+      >
+        <View ref={ref} style={selectStyles.wrapper}>
+          <Area style={selectStyles.area} contentContainerStyle={selectStyles.areaContent}>
+            {selectedItemRenderer(props)}
+          </Area>
+          <DropDownButton onPress={() => showContent(props)} />
+        </View>
+      </TouchableWithoutFeedback>
+    );
+  },
+);
 
 BasicSelectControl.propTypes = {
   showContent: PropTypes.func.isRequired,

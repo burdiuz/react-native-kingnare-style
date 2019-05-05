@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 
 import { getComponentName } from './utils';
@@ -18,6 +18,7 @@ const withContentSibling = (ControlComponent, contentRenderer, displayName) => {
   class ContentSibling extends Component {
     static propTypes = {
       showContent: PropTypes.func,
+      forwardedRef: PropTypes.any,
     };
 
     static defaultProps = {
@@ -42,20 +43,24 @@ const withContentSibling = (ControlComponent, contentRenderer, displayName) => {
     };
 
     render() {
+      const { forwardedRef, ...props } = this.props;
       const { visible, contentProps } = this.state;
 
       return (
         <>
-          <ControlComponent {...this.props} showContent={this.showContent} />
+          <ControlComponent {...props} ref={forwardedRef} showContent={this.showContent} />
           {visible ? contentRenderer(contentProps, this.hideContent) : null}
         </>
       );
     }
   }
 
-  ContentSibling.displayName = displayName || `withContentSibling(${getComponentName(ControlComponent)})`;
+  const RefForward = forwardRef((props, ref) => <ContentSibling {...props} forwardedRef={ref} />);
 
-  return ContentSibling;
+  RefForward.displayName =
+    displayName || `withContentSibling(${getComponentName(ControlComponent)})`;
+
+  return RefForward;
 };
 
 export default withContentSibling;

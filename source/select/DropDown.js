@@ -1,16 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import { FlatList } from 'react-native';
 
 import { callIfFunction } from '../utils';
-import { BlockingModal } from '../Modal/Modal';
-import { bigModalDefaultStyle } from '../Modal/utils';
 import LinkButton from '../Button/LinkButton';
 import withContentSibling from '../withContentSibling';
 
 import BasicSelectControl from './BasicSelectControl';
 import { defaultListKeyExtractor, defaultValueComparator } from './utils';
 import { selectStyles } from './styles';
+
+import Area from '../Area/Area';
+import VAnchoringModal from '../Modal/VAnchoringModal';
+import { PLACEMENT_TOP, PLACEMENT_BOTTOM } from '../constants';
+
+export const DropDownContent = ({ x, y, width, children, onRequestClose, ...props }) => (
+  <VAnchoringModal x={x} y={y} placement={PLACEMENT_BOTTOM} onRequestClose={onRequestClose}>
+    <Area contentContainerStyle={{ minWidth: width, flexGrow: 0 }} {...props}>
+      {children}
+    </Area>
+  </VAnchoringModal>
+);
+
+export const DropUpContent = ({ x, y, width, children, onRequestClose, ...props }) => (
+  <VAnchoringModal x={x} y={y} placement={PLACEMENT_TOP} onRequestClose={onRequestClose}>
+    <Area contentContainerStyle={{ minWidth: width, flexGrow: 0 }} {...props}>
+      {children}
+    </Area>
+  </VAnchoringModal>
+);
 
 /*
 <Select
@@ -31,7 +50,10 @@ const defaultListRenderer = (props, close) => {
 
   return (
     <FlatList
-      style={selectStyles.list}
+      style={{
+        flexGrow: 0,
+        alignSelf: 'stretch',
+      }}
       data={items}
       keyExtractor={keyExtractor}
       renderItem={(data) => itemRenderer(data, props, close)}
@@ -56,8 +78,8 @@ const defaultListItemRenderer = ({ item }, { onChange, selectedItem, valueCompar
   );
 };
 
-const selectContentRenderer = (props, close) => {
-  const { children, contentContainerStyle } = props;
+const dropDownContentRenderer = (props, close) => {
+  const { dropUp, x, y, width, height, children, contentContainerStyle } = props;
 
   if (!close) {
     throw new Error(
@@ -65,18 +87,68 @@ const selectContentRenderer = (props, close) => {
     );
   }
 
+  const ContentContainer = dropUp ? DropUpContent : DropDownContent;
+
   return (
-    <BlockingModal style={contentContainerStyle} onRequestClose={close}>
+    <ContentContainer
+      style={contentContainerStyle}
+      onRequestClose={close}
+      x={x}
+      y={dropUp ? y : y + height}
+      width={width}
+    >
       {callIfFunction(children, props, close)}
-    </BlockingModal>
+    </ContentContainer>
   );
 };
 
-const Select = withContentSibling(BasicSelectControl, selectContentRenderer, 'Select');
+const DropDownView = withContentSibling(
+  BasicSelectControl,
+  dropDownContentRenderer,
+  'DropDownView',
+);
 
-Select.propTypes = {
+class DropDown extends Component {
+  state = {};
+
+  buttonView = null;
+
+  handleReference = (ref) => {
+    this.buttonView = ref;
+  };
+
+  handleMeasure = (fx, fy, width, height, x, y) => {
+    this.setState({ x, y, width, height });
+  };
+
+  handleLayout = ({
+    nativeEvent: {
+      layout: { x, y, width, height },
+    },
+  }) => {
+    if (this.buttonView) {
+      this.buttonView.measure(this.handleMeasure);
+    } else {
+      this.setState({ x, y, width, height });
+    }
+  };
+
+  render() {
+    console.log(this.state);
+    return (
+      <DropDownView
+        ref={this.handleReference}
+        {...this.props}
+        {...this.state}
+        onLayout={this.handleLayout}
+      />
+    );
+  }
+}
+
+DropDown.propTypes = {
   ...BasicSelectControl.propTypes,
-  ...Select.propTypes,
+  ...DropDownView.propTypes,
   onChange: PropTypes.func.isRequired,
   items: PropTypes.array.isRequired,
   preferredModalWidth: PropTypes.number,
@@ -90,16 +162,16 @@ Select.propTypes = {
   showContent: PropTypes.func,
 };
 
-Select.defaultProps = {
+DropDown.defaultProps = {
   ...BasicSelectControl.defaultProps,
-  ...Select.defaultProps,
+  ...DropDownView.defaultProps,
   selectedItem: undefined,
   children: defaultListRenderer,
   keyExtractor: defaultListKeyExtractor,
   itemRenderer: defaultListItemRenderer,
   valueComparator: defaultValueComparator,
-  contentContainerStyle: bigModalDefaultStyle,
+  contentContainerStyle: undefined,
   showContent: undefined,
 };
 
-export default Select;
+export default DropDown;

@@ -4,8 +4,13 @@ import { ELEMENT_MIN_SIZE } from '../constants';
 import { GROUP_PADDING } from '../Form/Group';
 
 export const selectStyles = StyleSheet.create({
+  touchableWrapper: {
+    alignItems: 'stretch',
+    minWidth: ELEMENT_MIN_SIZE * 3,
+    height: ELEMENT_MIN_SIZE,
+    backgroundColor: 0xFF0000FF
+  },
   touchable: {
-    flex: 0,
     alignItems: 'stretch',
     minWidth: ELEMENT_MIN_SIZE * 3,
     height: ELEMENT_MIN_SIZE,
