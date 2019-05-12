@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { NetInfo, PermissionsAndroid } from 'react-native';
+import { NetInfo } from 'react-native';
+// import NetInfo from '@react-native-community/netinfo';
 
 import { getComponentName } from '../utils';
 

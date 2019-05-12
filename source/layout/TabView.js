@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignSelf: 'stretch',
-    alignItems: 'stretch',
   },
   content: {
     padding: 10,

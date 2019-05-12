@@ -134,7 +134,6 @@ class DropDown extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <DropDownView
         ref={this.handleReference}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { getComponentName, callIfFunction } from './utils';
@@ -11,13 +11,13 @@ const WrapperDefaultProps = {
   style: undefined,
 };
 
-const withStyle = (Component, componentStyle, displayName = '') => {
-  const Wrapper = (props) => (
-    <Component
-      {...props}
-      style={props.style ? [componentStyle, props.style] : componentStyle}
-    />
-  );
+const withStyle = (Component, baseStyle, displayName = '') => {
+  const Wrapper = (props) => {
+    const { style } = props;
+    const computedStyle = useMemo(() => (style ? [baseStyle, style] : baseStyle), style);
+    
+    return <Component {...props} style={computedStyle} />;
+  };
 
   Wrapper.propTypes = WrapperPropTypes;
   Wrapper.defaultProps = WrapperDefaultProps;
@@ -38,7 +38,7 @@ export const withStyles = (Component, styles = {}, displayName = '') => {
 
       const { [key]: style } = props;
 
-      if(defaultStyle) {
+      if (defaultStyle) {
         styleProps[key] = style ? [defaultStyle, style] : defaultStyle;
       }
     });

@@ -8,7 +8,7 @@ export const selectStyles = StyleSheet.create({
     alignItems: 'stretch',
     minWidth: ELEMENT_MIN_SIZE * 3,
     height: ELEMENT_MIN_SIZE,
-    backgroundColor: 0xFF0000FF
+    backgroundColor: 0xff0000ff,
   },
   touchable: {
     alignItems: 'stretch',
@@ -43,6 +43,7 @@ export const tabBarStyles = StyleSheet.create({
     position: 'relative',
     paddingTop: GROUP_PADDING,
     paddingBottom: 0,
+    height: ELEMENT_MIN_SIZE + 10,
   },
   topRule: {
     position: 'absolute',

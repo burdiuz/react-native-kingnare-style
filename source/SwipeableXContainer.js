@@ -31,6 +31,7 @@ class SwipeableXContainer extends Component {
     swipeThroughThresholdMultiplier: PropTypes.number,
     swipeThroughVelocity: PropTypes.number,
     swipeShiftMultiplier: PropTypes.number,
+    forceCapture: PropTypes.bool,
     contentContainerStyle: PropTypes.any,
   };
   static defaultProps = {
@@ -44,6 +45,7 @@ class SwipeableXContainer extends Component {
     swipeThroughThresholdMultiplier: 0.4,
     swipeThroughVelocity: 1,
     swipeShiftMultiplier: 0.85,
+    forceCapture: false,
     contentContainerStyle: undefined,
   };
 
@@ -124,7 +126,7 @@ class SwipeableXContainer extends Component {
 
     if (
       numberActiveTouches === 1 &&
-      (this.props.forceCaptire || (adx > 10 && adx > Math.abs(dy) * 3))
+      (this.props.forceCapture || (adx > 10 && adx > Math.abs(dy) * 3))
     ) {
       const { swipeLeftPanelRenderer, swipeRightPanelRenderer } = this.props;
       const { position } = this.state;
