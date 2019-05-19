@@ -37,8 +37,6 @@ export const CheckBoxButton = ({ selected, disabled, style, ...props }) => {
     icon = <Icon style={checkBoxStyles.icon} />;
   }
 
-  console.log(disabled);
-
   return (
     <TouchableHighlight
       {...props}

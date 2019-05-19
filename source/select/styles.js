@@ -16,6 +16,7 @@ export const selectStyles = StyleSheet.create({
     height: ELEMENT_MIN_SIZE,
   },
   wrapper: {
+    flexGrow: 1,
     flexDirection: 'row',
     alignItems: 'stretch',
   },

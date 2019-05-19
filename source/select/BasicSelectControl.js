@@ -33,10 +33,10 @@ const BasicSelectControl = forwardRef(
     return (
       <TouchableWithoutFeedback
         {...props}
-        style={style ? [selectStyles.touchable, style] : selectStyles.touchable}
+        style={selectStyles.touchable}
         onPress={() => showContent(props)}
       >
-        <View ref={ref} style={selectStyles.wrapper}>
+        <View ref={ref} style={style ? [selectStyles.wrapper, style] : selectStyles.wrapper}>
           <Area style={selectStyles.area} contentContainerStyle={selectStyles.areaContent}>
             {selectedItemRenderer(props)}
           </Area>
