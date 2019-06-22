@@ -14,8 +14,8 @@ const WrapperDefaultProps = {
 const withStyle = (Component, baseStyle, displayName = '') => {
   const Wrapper = (props) => {
     const { style } = props;
-    const computedStyle = useMemo(() => (style ? [baseStyle, style] : baseStyle), style);
-    
+    let computedStyle = useMemo(() => (style ? [baseStyle, style] : baseStyle), [style]);
+
     return <Component {...props} style={computedStyle} />;
   };
 

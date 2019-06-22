@@ -27,6 +27,8 @@ class SwipeableXContainer extends Component {
     children: PropTypes.node.isRequired,
     swipeLeftPanelRenderer: PropTypes.func,
     swipeRightPanelRenderer: PropTypes.func,
+    isLeftSwapable: PropTypes.func,
+    isRightSwapable: PropTypes.func,
     swipeThresholdMultiplier: PropTypes.number,
     swipeThroughThresholdMultiplier: PropTypes.number,
     swipeThroughVelocity: PropTypes.number,
@@ -41,6 +43,8 @@ class SwipeableXContainer extends Component {
     onSwipeStateChange: undefined,
     swipeLeftPanelRenderer: undefined,
     swipeRightPanelRenderer: undefined,
+    isLeftSwapable: undefined,
+    isRightSwapable: undefined,
     swipeThresholdMultiplier: 0.15,
     swipeThroughThresholdMultiplier: 0.4,
     swipeThroughVelocity: 1,
@@ -78,14 +82,16 @@ class SwipeableXContainer extends Component {
    * @public
    */
   isLeftSwapable() {
-    return !!this.props.swipeLeftPanelRenderer;
+    const { isLeftSwapable, swipeLeftPanelRenderer } = this.props;
+    return (!isLeftSwapable || isLeftSwapable(this.props)) && !!swipeLeftPanelRenderer;
   }
 
   /**
    * @public
    */
   isRightSwapable() {
-    return !!this.props.swipeRightPanelRenderer;
+    const { isRightSwapable, swipeRightPanelRenderer } = this.props;
+    return (!isRightSwapable || isRightSwapable(this.props)) && !!swipeRightPanelRenderer;
   }
 
   /**
@@ -128,13 +134,12 @@ class SwipeableXContainer extends Component {
       numberActiveTouches === 1 &&
       (this.props.forceCapture || (adx > 10 && adx > Math.abs(dy) * 3))
     ) {
-      const { swipeLeftPanelRenderer, swipeRightPanelRenderer } = this.props;
       const { position } = this.state;
       return (
         (dx < 0 &&
-          ((position === SWIPE_CENTER && swipeLeftPanelRenderer) || position === SWIPE_RIGHT)) ||
+          ((position === SWIPE_CENTER && this.isLeftSwapable()) || position === SWIPE_RIGHT)) ||
         (dx > 0 &&
-          ((position === SWIPE_CENTER && swipeRightPanelRenderer) || position === SWIPE_LEFT))
+          ((position === SWIPE_CENTER && this.isRightSwapable()) || position === SWIPE_LEFT))
       );
     }
 

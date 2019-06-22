@@ -9,7 +9,15 @@ import { linkStyles, BUTTON_HIGHLIGHT_COLOR } from './styles';
 import { getButtonStyle } from './utils';
 
 const LinkButton = (props) => {
-  const { disabled, label, labelStyle, style, children, ...highlightProps } = props;
+  const {
+    disabled,
+    label,
+    labelStyle,
+    numberOfLines,
+    style,
+    children,
+    ...highlightProps
+  } = props;
 
   return (
     <TouchableHighlight
@@ -18,7 +26,10 @@ const LinkButton = (props) => {
       underlayColor={BUTTON_HIGHLIGHT_COLOR}
       disabled={disabled}
     >
-      <Text style={[getButtonStyle(linkStyles, disabled), labelStyle]} numberOfLines={1}>
+      <Text
+        style={[getButtonStyle(linkStyles, disabled), labelStyle]}
+        numberOfLines={numberOfLines}
+      >
         {label}
       </Text>
     </TouchableHighlight>

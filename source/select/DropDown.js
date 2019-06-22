@@ -117,8 +117,8 @@ class DropDown extends Component {
     this.buttonView = ref;
   };
 
-  handleMeasure = (fx, fy, width, height, x, y) => {
-    this.setState({ x, y, width, height });
+  handleMeasure = (fx, fy, width, height, x, y, callback) => {
+    this.setState({ x, y, width, height }, callback);
   };
 
   handleLayout = ({
@@ -133,12 +133,19 @@ class DropDown extends Component {
     }
   };
 
+  mapContentProps = (contentProps, setContentProps) => {
+    this.buttonView.measure((fx, fy, width, height, x, y) => {
+      this.handleMeasure(fx, fy, width, height, x, y);
+      setContentProps({ ...contentProps, width, height, x, y });
+    });
+  };
+
   render() {
     return (
       <DropDownView
         ref={this.handleReference}
         {...this.props}
-        {...this.state}
+        mapContentProps={this.mapContentProps}
         onLayout={this.handleLayout}
       />
     );

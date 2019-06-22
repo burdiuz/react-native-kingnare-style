@@ -4,6 +4,7 @@ import { getButtonStyle } from './utils';
 import IconButton from './IconButton';
 import TextButton from './TextButton';
 import LinkButton from './LinkButton';
+import SectionButton from './SectionButton';
 import { Radio, RadioButton } from './Radio';
 import { CheckBox, CheckBoxButton } from './CheckBox';
 import { TabButtonTop, TabButtonBottom } from './Tab';
@@ -16,6 +17,7 @@ export {
   IconButton,
   TextButton,
   LinkButton,
+  SectionButton,
   Radio,
   RadioButton,
   CheckBox,

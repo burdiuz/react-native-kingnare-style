@@ -1,9 +1,17 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Modal, View, StyleSheet } from 'react-native';
 
-import withStyle from '../withStyle';
-import { createBaseModal } from '../BaseModal';
+import Screen from './Screen';
+import { separateModalProps } from '../BaseModal';
 
-import styles from './styles';
+const ModalScreen = (allProps) => {
+  const { modalProps, props } = separateModalProps(allProps);
 
-export default withStyle(createBaseModal(View), styles.blocking, 'ModalScreen');
+  return (
+    <Modal {...modalProps} transparent>
+      <Screen {...props} />
+    </Modal>
+  );
+};
+
+export default ModalScreen;

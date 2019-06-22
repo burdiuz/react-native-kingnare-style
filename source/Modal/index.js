@@ -2,7 +2,7 @@ import Alert, { makeAlert, setDefaultAlertCloseAction } from './Alert';
 import Modal, { BlockingModal } from './Modal';
 import ModalHost from './ModalHost';
 import withHostedModal, { makeHostedModal } from './withHostedModal';
-import { makeHostedModalRenderer, bigModalStyleProps } from './utils';
+import { makeHostedModalRenderer, bigModalStyleProps, bigModalDefaultStyle } from './utils';
 
 export {
   Alert,
@@ -14,5 +14,6 @@ export {
   makeHostedModal,
   makeHostedModalRenderer,
   bigModalStyleProps,
+  bigModalDefaultStyle,
   setDefaultAlertCloseAction,
 };

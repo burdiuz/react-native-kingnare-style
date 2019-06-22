@@ -194,7 +194,7 @@ export const checkBoxInnerStyles = StyleSheet.create({
 export const linkStyles = StyleSheet.create({
   highlight: {
     borderRadius: 2,
-    height: ELEMENT_MIN_SIZE,
+    minHeight: ELEMENT_MIN_SIZE,
     alignItems: 'center',
     justifyContent: 'center',
   },

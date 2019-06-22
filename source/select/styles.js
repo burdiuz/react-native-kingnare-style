@@ -12,11 +12,10 @@ export const selectStyles = StyleSheet.create({
   },
   touchable: {
     alignItems: 'stretch',
-    minWidth: ELEMENT_MIN_SIZE * 3,
-    height: ELEMENT_MIN_SIZE,
   },
   wrapper: {
-    flexGrow: 1,
+    minWidth: ELEMENT_MIN_SIZE * 3,
+    height: ELEMENT_MIN_SIZE,
     flexDirection: 'row',
     alignItems: 'stretch',
   },

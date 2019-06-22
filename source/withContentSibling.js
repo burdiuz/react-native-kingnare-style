@@ -18,24 +18,38 @@ const withContentSibling = (ControlComponent, contentRenderer, displayName) => {
   class ContentSibling extends Component {
     static propTypes = {
       showContent: PropTypes.func,
+      mapContentProps: PropTypes.func,
       forwardedRef: PropTypes.any,
     };
 
     static defaultProps = {
       showContent: undefined,
+      mapContentProps: undefined,
     };
 
     state = { visible: false, contentProps: null };
 
     showContent = (contentProps = {}) => {
-      const { showContent } = this.props;
+      const { showContent, mapContentProps } = this.props;
 
       if (showContent) {
         showContent(contentRenderer, contentProps);
         return;
       }
 
-      this.setState({ visible: true, contentProps });
+      if (mapContentProps) {
+        mapContentProps(contentProps, (props) => {
+          this.setState({
+            visible: true,
+            contentProps: props,
+          });
+        });
+      } else {
+        this.setState({
+          visible: true,
+          contentProps,
+        });
+      }
     };
 
     hideContent = () => {

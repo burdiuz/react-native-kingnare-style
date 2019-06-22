@@ -53,7 +53,7 @@ TabViewChildrenView.propTypes = {
   bottom: PropTypes.node,
   style: PropTypes.any,
   contentContainerStyle: PropTypes.any,
-  contentContainerClass: PropTypes.any, //  hould be an object when forwardRef() used
+  contentContainerClass: PropTypes.any, // should be an object when forwardRef() used
 };
 
 TabViewChildrenView.defaultProps = {
