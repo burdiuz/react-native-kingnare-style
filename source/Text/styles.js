@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { TEXT_COLOR } from '../constants';
+import { TEXT_COLOR, TEXT_ACTIVE_COLOR,TEXT_DISABLED_COLOR } from '../constants';
 
 export default StyleSheet.create({
   text: {
@@ -14,6 +14,12 @@ export default StyleSheet.create({
   },
   italic: {
     fontStyle: 'italic',
+  },
+  active: {
+    color: TEXT_ACTIVE_COLOR,
+  },
+  disabled: {
+    color: TEXT_DISABLED_COLOR,
   },
   strong: {
     fontWeight: '600',

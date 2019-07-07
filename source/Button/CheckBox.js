@@ -1,15 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TouchableHighlight, View, StyleSheet } from 'react-native';
-
-import {
-  TEXT_COLOR,
-  TEXT_ACTIVE_COLOR,
-  TEXT_DISABLED_COLOR,
-  DARK_BORDER_COLOR,
-  LIGHT_BORDER_COLOR,
-  ELEMENT_MIN_SIZE,
-} from '../constants';
+import { TouchableHighlight, View } from 'react-native';
 
 import { getButtonStyle } from './utils';
 

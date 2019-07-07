@@ -120,7 +120,7 @@ const withLabel = (Component, defaultLabelStyle, displayName = '') => {
 
     return (
       <View style={[getPlacementStyle(placement), contentContainerStyle]}>
-        <Component {...props} onPress={onPress} onLongPress={onLongPress} />
+        <Component {...props} disabled={disabled} onPress={onPress} onLongPress={onLongPress} />
         {labelNode}
         {children}
       </View>
