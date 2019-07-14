@@ -22,13 +22,13 @@ class SwipeableXContainer extends Component {
   static propTypes = {
     onSwipeStart: PropTypes.func,
     onSwipeConfirm: PropTypes.func,
-    onSwipeFinish: PropTypes.func,
+    onAnimationFinish: PropTypes.func,
     onSwipeStateChange: PropTypes.func,
     children: PropTypes.node.isRequired,
     swipeLeftPanelRenderer: PropTypes.func,
     swipeRightPanelRenderer: PropTypes.func,
-    isLeftSwapable: PropTypes.func,
-    isRightSwapable: PropTypes.func,
+    isLeftSwipeable: PropTypes.func,
+    isRightSwipeable: PropTypes.func,
     swipeThresholdMultiplier: PropTypes.number,
     swipeThroughThresholdMultiplier: PropTypes.number,
     swipeThroughVelocity: PropTypes.number,
@@ -39,12 +39,12 @@ class SwipeableXContainer extends Component {
   static defaultProps = {
     onSwipeStart: undefined,
     onSwipeConfirm: undefined,
-    onSwipeFinish: undefined,
+    onAnimationFinish: undefined,
     onSwipeStateChange: undefined,
     swipeLeftPanelRenderer: undefined,
     swipeRightPanelRenderer: undefined,
-    isLeftSwapable: undefined,
-    isRightSwapable: undefined,
+    isLeftSwipeable: undefined,
+    isRightSwipeable: undefined,
     swipeThresholdMultiplier: 0.15,
     swipeThroughThresholdMultiplier: 0.4,
     swipeThroughVelocity: 1,
@@ -81,39 +81,39 @@ class SwipeableXContainer extends Component {
   /**
    * @public
    */
-  isLeftSwapable() {
-    const { isLeftSwapable, swipeLeftPanelRenderer } = this.props;
-    return (!isLeftSwapable || isLeftSwapable(this.props)) && !!swipeLeftPanelRenderer;
-  }
+  isLeftSwipeable = () => {
+    const { isLeftSwipeable, swipeLeftPanelRenderer } = this.props;
+    return (!isLeftSwipeable || isLeftSwipeable(this.props)) && !!swipeLeftPanelRenderer;
+  };
 
   /**
    * @public
    */
-  isRightSwapable() {
-    const { isRightSwapable, swipeRightPanelRenderer } = this.props;
-    return (!isRightSwapable || isRightSwapable(this.props)) && !!swipeRightPanelRenderer;
-  }
+  isRightSwipeable = () => {
+    const { isRightSwipeable, swipeRightPanelRenderer } = this.props;
+    return (!isRightSwipeable || isRightSwipeable(this.props)) && !!swipeRightPanelRenderer;
+  };
 
   /**
    * @public
    */
-  left(callback, duration) {
+  left = (callback, duration) => {
     this.animateTopTo(SWIPE_LEFT, callback, duration);
-  }
+  };
 
   /**
    * @public
    */
-  right(callback, duration) {
+  right = (callback, duration) => {
     this.animateTopTo(SWIPE_RIGHT, callback, duration);
-  }
+  };
 
   /**
    * @public
    */
-  center(callback, duration) {
+  center = (callback, duration) => {
     this.animateTopTo(SWIPE_CENTER, callback, duration);
-  }
+  };
 
   /**
    * @private
@@ -137,9 +137,9 @@ class SwipeableXContainer extends Component {
       const { position } = this.state;
       return (
         (dx < 0 &&
-          ((position === SWIPE_CENTER && this.isLeftSwapable()) || position === SWIPE_RIGHT)) ||
+          ((position === SWIPE_CENTER && this.isLeftSwipeable()) || position === SWIPE_RIGHT)) ||
         (dx > 0 &&
-          ((position === SWIPE_CENTER && this.isRightSwapable()) || position === SWIPE_LEFT))
+          ((position === SWIPE_CENTER && this.isRightSwipeable()) || position === SWIPE_LEFT))
       );
     }
 
@@ -181,7 +181,7 @@ class SwipeableXContainer extends Component {
       swipeThroughVelocity,
     } = this.props;
     const adx = Math.abs(dx);
-    const { onSwipeConfirm, onSwipeFinish } = this.props;
+    const { onSwipeConfirm, onAnimationFinish } = this.props;
     const { position, width } = this.state;
     const swipeThreshold = width * swipeThresholdMultiplier;
     const swipeThroughThreshold = width * swipeThroughThresholdMultiplier;
@@ -189,7 +189,7 @@ class SwipeableXContainer extends Component {
     let next = SWIPE_CENTER;
 
     // swipe left
-    if (dx < -swipeThreshold && this.isLeftSwapable()) {
+    if (dx < -swipeThreshold && this.isLeftSwipeable()) {
       switch (position) {
         case SWIPE_RIGHT:
           if (adx >= swipeThroughThreshold || vx >= swipeThroughVelocity) {
@@ -205,7 +205,7 @@ class SwipeableXContainer extends Component {
           break;
       }
       // swipe right
-    } else if (dx > swipeThreshold && this.isRightSwapable()) {
+    } else if (dx > swipeThreshold && this.isRightSwipeable()) {
       switch (position) {
         case SWIPE_LEFT:
           if (adx > swipeThroughThreshold || vx <= -swipeThroughVelocity) {
@@ -222,7 +222,7 @@ class SwipeableXContainer extends Component {
       }
     }
 
-    this.animateTopTo(next, onSwipeFinish);
+    this.animateTopTo(next);
 
     if (onSwipeConfirm) {
       onSwipeConfirm(position, next);
@@ -233,8 +233,7 @@ class SwipeableXContainer extends Component {
    * @private
    */
   handlePanResponderTerminate = () => {
-    const { onSwipeFinish } = this.props;
-    this.animateTopTo(this.state.position, onSwipeFinish);
+    this.animateTopTo(this.state.position);
   };
 
   /**
@@ -273,14 +272,14 @@ class SwipeableXContainer extends Component {
     const currentXPos = dx + this.touchPosXValue;
 
     if (currentXPos < 0) {
-      if (!this.isLeftSwapable()) {
+      if (!this.isLeftSwipeable()) {
         this.topPosX.setValue(0);
         return;
       }
 
       this.setTopPositionState(SWIPE_LEFT);
     } else if (currentXPos > 0) {
-      if (!this.isRightSwapable()) {
+      if (!this.isRightSwipeable()) {
         this.topPosX.setValue(0);
         return;
       }
@@ -295,10 +294,15 @@ class SwipeableXContainer extends Component {
    * @private
    */
   animateTopTo(swipe, handler, duration = 300) {
+    const { onAnimationFinish } = this.props;
     const { width, position } = this.state;
     const toValue = calculateTopPosition(swipe, width, this.props.swipeShiftMultiplier);
 
     const handlerCallback = () => {
+      if (onAnimationFinish) {
+        onAnimationFinish(position, swipe);
+      }
+      
       if (handler) {
         handler(position, swipe);
       }
@@ -349,7 +353,7 @@ class SwipeableXContainer extends Component {
         break;
     }
 
-    return renderer && renderer(this.props);
+    return renderer && renderer(this);
   }
 
   render() {
