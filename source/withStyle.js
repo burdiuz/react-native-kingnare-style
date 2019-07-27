@@ -31,19 +31,23 @@ export const withStyles = (Component, styles = {}, displayName = '') => {
   const styleKeys = Object.keys(styles);
 
   const Wrapper = (props) => {
-    const styleProps = {};
+    const combinedStyles = useMemo(() => {
+      const styleProps = {};
 
-    styleKeys.forEach((key) => {
-      const defaultStyle = callIfFunction(styles[key], props);
+      styleKeys.forEach((key) => {
+        const defaultStyle = callIfFunction(styles[key], props);
 
-      const { [key]: style } = props;
+        const { [key]: style } = props;
 
-      if (defaultStyle) {
-        styleProps[key] = style ? [defaultStyle, style] : defaultStyle;
-      }
-    });
+        if (defaultStyle) {
+          styleProps[key] = style ? [defaultStyle, style] : defaultStyle;
+        }
+      });
 
-    return <Component {...props} {...styleProps} />;
+      return styleProps;
+    }, styleKeys.map((name) => props[name]));
+
+    return <Component {...props} {...combinedStyles} />;
   };
 
   Wrapper.propTypes = WrapperPropTypes;

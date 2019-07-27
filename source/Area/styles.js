@@ -50,6 +50,8 @@ export default StyleSheet.create({
   },
   scrollContent: {
     borderRadius: 2,
+    borderBottomWidth: 6,
+    borderBottomColor: 0x00000000,
     backgroundColor: BACKGROUND_COLOR,
   },
 });

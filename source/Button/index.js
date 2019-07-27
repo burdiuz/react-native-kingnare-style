@@ -6,7 +6,7 @@ import TextButton from './TextButton';
 import LinkButton from './LinkButton';
 import SectionButton from './SectionButton';
 import { Radio, RadioButton } from './Radio';
-import { CheckBox, CheckBoxButton } from './CheckBox';
+import { CheckBox, CheckBoxButton, CheckBoxButtonView } from './CheckBox';
 import { TabButtonTop, TabButtonBottom } from './Tab';
 
 export {
@@ -22,6 +22,7 @@ export {
   RadioButton,
   CheckBox,
   CheckBoxButton,
+  CheckBoxButtonView,
   TabButtonTop,
   TabButtonBottom,
 };

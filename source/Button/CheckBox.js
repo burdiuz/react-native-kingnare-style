@@ -16,11 +16,7 @@ import {
 
 import { CheckIcon, CheckDisabledIcon } from '../assets/CheckIcon';
 
-export const CheckBoxButton = ({ selected, disabled, style, ...props }) => {
-  const highlightColor = selected
-    ? BUTTON_SELECTED_HIGHLIGHT_COLOR
-    : BUTTON_HIGHLIGHT_COLOR;
-
+export const CheckBoxButtonView = ({ selected, disabled }) => {
   let icon = null;
 
   if (selected) {
@@ -29,26 +25,24 @@ export const CheckBoxButton = ({ selected, disabled, style, ...props }) => {
   }
 
   return (
+    <View style={[checkBoxStyles.outerCircle, getButtonStyle(checkBoxOuterStyles, disabled)]}>
+      <View style={[checkBoxStyles.innerCircle, getButtonStyle(checkBoxInnerStyles, disabled)]} />
+      {icon}
+    </View>
+  );
+};
+
+export const CheckBoxButton = ({ selected, disabled, style, ...props }) => {
+  const highlightColor = selected ? BUTTON_SELECTED_HIGHLIGHT_COLOR : BUTTON_HIGHLIGHT_COLOR;
+
+  return (
     <TouchableHighlight
       {...props}
       style={[checkBoxStyles.highlight, style]}
       disabled={disabled}
       underlayColor={highlightColor}
     >
-      <View
-        style={[
-          checkBoxStyles.outerCircle,
-          getButtonStyle(checkBoxOuterStyles, disabled),
-        ]}
-      >
-        <View
-          style={[
-            checkBoxStyles.innerCircle,
-            getButtonStyle(checkBoxInnerStyles, disabled),
-          ]}
-        />
-        {icon}
-      </View>
+      <CheckBoxButtonView selected={selected} disabled={disabled} />
     </TouchableHighlight>
   );
 };

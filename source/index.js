@@ -19,6 +19,7 @@ export { default as withStyle, withStyles } from './withStyle';
 export { default as withProps } from './withProps';
 export { default as withToggle } from './withToggle';
 export { default as withContentSibling } from './withContentSibling';
+export { default as withLayoutProps } from './withLayoutProps';
 export {
   default as TransparencyBackground,
   TransparencyImage,

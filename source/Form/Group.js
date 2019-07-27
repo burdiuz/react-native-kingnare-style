@@ -1,6 +1,6 @@
 import { View, StyleSheet } from 'react-native';
 
-import withStyle from '../withStyle';
+import { withStyles } from '../withStyle';
 
 export const GROUP_PADDING = 10;
 
@@ -14,23 +14,135 @@ const paddings = {
   */
 };
 
+const noHorizontalPaddings = {
+  paddingBottom: GROUP_PADDING,
+};
+
+const hGroup = {
+  flexDirection: 'row',
+  alignItems: 'center',
+};
+
+const rGroup = {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'flex-end',
+};
+
+const sbGroup = {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+};
+
+const saGroup = {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-around',
+};
+
 const styles = StyleSheet.create({
   vgroup: {
     ...paddings,
   },
+  vgroupNoHorizontalPadding: {
+    ...noHorizontalPaddings,
+  },
+  vgroupNoPadding: {},
   hgroup: {
     ...paddings,
-    flexDirection: 'row',
+    ...hGroup,
+  },
+  hgroupNoHorizontalPadding: {
+    ...noHorizontalPaddings,
+    ...hGroup,
+  },
+  hgroupNoPadding: {
+    ...hGroup,
   },
   rgroup: {
     ...paddings,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
+    ...rGroup,
+  },
+  rgroupNoHorizontalPadding: {
+    ...noHorizontalPaddings,
+    ...rGroup,
+  },
+  rgroupNoPadding: {
+    ...rGroup,
+  },
+  sbgroup: {
+    ...paddings,
+    ...sbGroup,
+  },
+  sbgroupNoHorizontalPadding: {
+    ...noHorizontalPaddings,
+    ...sbGroup,
+  },
+  sbgroupNoPadding: {
+    ...sbGroup,
+  },
+  sagroup: {
+    ...paddings,
+    ...saGroup,
+  },
+  sagroupNoHorizontalPadding: {
+    ...noHorizontalPaddings,
+    ...saGroup,
+  },
+  sagroupNoPadding: {
+    ...saGroup,
   },
 });
 
-export const VGroup = withStyle(View, styles.vgroup, 'VGroup');
+const getStyle = (normal, hPadding, padding) => ({ noPadding, noHorizontalPadding }) => {
+  if (noPadding) {
+    return padding;
+  }
 
-export const HGroup = withStyle(View, styles.hgroup, 'HGroup');
+  if (noHorizontalPadding) {
+    return hPadding;
+  }
 
-export const RGroup = withStyle(View, styles.rgroup, 'RGroup');
+  return normal;
+};
+
+export const VGroup = withStyles(
+  View,
+  {
+    style: getStyle(styles.vgroup, styles.vgroupNoHorizontalPadding, styles.vgroupNoPadding),
+  },
+  'VGroup',
+);
+
+export const HGroup = withStyles(
+  View,
+  {
+    style: getStyle(styles.hgroup, styles.hgroupNoHorizontalPadding, styles.hgroupNoPadding),
+  },
+  'HGroup',
+);
+
+export const RGroup = withStyles(
+  View,
+  {
+    style: getStyle(styles.rgroup, styles.rgroupNoHorizontalPadding, styles.rgroupNoPadding),
+  },
+  'RGroup',
+);
+
+export const SBGroup = withStyles(
+  View,
+  {
+    style: getStyle(styles.sbgroup, styles.sbgroupNoHorizontalPadding, styles.sbgroupNoPadding),
+  },
+  'RGroup',
+);
+
+export const SAGroup = withStyles(
+  View,
+  {
+    style: getStyle(styles.sagroup, styles.sagroupNoHorizontalPadding, styles.sagroupNoPadding),
+  },
+  'RGroup',
+);
