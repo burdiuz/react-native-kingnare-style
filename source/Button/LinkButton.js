@@ -14,6 +14,16 @@ const LinkButton = (props) => {
     label,
     labelStyle,
     numberOfLines,
+    adjustsFontSizeToFit,
+    allowFontScaling,
+    ellipsizeMode,
+    maxFontSizeMultiplier,
+    minimumFontScale,
+    selectable,
+    selectionColor,
+    suppressHighlighting,
+    textBreakStrategy,
+
     style,
     children,
     ...highlightProps
@@ -29,6 +39,15 @@ const LinkButton = (props) => {
       <Text
         style={[getButtonStyle(linkStyles, disabled), labelStyle]}
         numberOfLines={numberOfLines}
+        adjustsFontSizeToFit
+        allowFontScaling={allowFontScaling}
+        ellipsizeMode={ellipsizeMode}
+        maxFontSizeMultiplier={maxFontSizeMultiplier}
+        minimumFontScale={minimumFontScale}
+        selectable={selectable}
+        selectionColor={selectionColor}
+        suppressHighlighting={suppressHighlighting}
+        textBreakStrategy={textBreakStrategy}
       >
         {label}
       </Text>

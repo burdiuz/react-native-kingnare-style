@@ -5,7 +5,7 @@ import SectionButton from '../Button/SectionButton';
 
 const Section = ({
   label,
-  labelStyle,
+  style,
   expanded: initialExpanded,
   locked,
   onExpanded,
@@ -18,7 +18,7 @@ const Section = ({
   return (
     <>
       <SectionButton
-        style={labelStyle}
+        style={style}
         label={label}
         expanded={expanded}
         disabled={locked}

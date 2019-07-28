@@ -6,23 +6,15 @@ import SectionHeader from '../Header/SectionHeader';
 
 import { BUTTON_HIGHLIGHT_COLOR } from './styles';
 
-const SectionButton = ({
-  style,
-  label,
-  children,
-  expanded,
-  disabled,
-  highlightStyle,
-  ...props
-}) => {
+const SectionButton = ({ label, children, expanded, disabled, style, ...props }) => {
   return (
     <TouchableHighlight
       {...props}
-      style={highlightStyle}
+      style={style}
       disabled={disabled}
       underlayColor={BUTTON_HIGHLIGHT_COLOR}
     >
-      <SectionHeader style={style} text={label} expanded={expanded} active={!disabled}>
+      <SectionHeader text={label} expanded={expanded} active={!disabled}>
         {children}
       </SectionHeader>
     </TouchableHighlight>

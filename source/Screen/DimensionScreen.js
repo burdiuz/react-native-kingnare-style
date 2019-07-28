@@ -15,9 +15,13 @@ export const DimensionScreen = withConstraintView(
   'DimensionScreen',
 );
 
+const RerouteScrollViewStyle = ({ scrollStyle, ...props }) => (
+  <ScrollView {...props} contentContainerStyle={scrollStyle} />
+);
+
 export const DimensionScrollScreen = withConstraintView(
   styles.dimension,
-  ScrollView,
+  RerouteScrollViewStyle,
   Screen,
   'DimensionScrollScreen',
 );

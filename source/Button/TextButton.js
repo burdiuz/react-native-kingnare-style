@@ -28,9 +28,37 @@ const styles = StyleSheet.create({
   },
 });
 
-const TextButton = ({ label, labelStyle, selected, disabled, ...props }) => (
+const TextButton = ({
+  label,
+  labelStyle,
+  numberOfLines,
+  adjustsFontSizeToFit,
+  allowFontScaling,
+  ellipsizeMode,
+  maxFontSizeMultiplier,
+  minimumFontScale,
+  selectable,
+  selectionColor,
+  suppressHighlighting,
+  textBreakStrategy,
+  selected,
+  disabled,
+  ...props
+}) => (
   <Button {...props} selected={selected} disabled={disabled}>
-    <Text style={[styles.base, getButtonStyle(styles, disabled, selected), labelStyle]}>
+    <Text
+      style={[styles.base, getButtonStyle(styles, disabled, selected), labelStyle]}
+      numberOfLines={numberOfLines}
+      adjustsFontSizeToFit
+      allowFontScaling={allowFontScaling}
+      ellipsizeMode={ellipsizeMode}
+      maxFontSizeMultiplier={maxFontSizeMultiplier}
+      minimumFontScale={minimumFontScale}
+      selectable={selectable}
+      selectionColor={selectionColor}
+      suppressHighlighting={suppressHighlighting}
+      textBreakStrategy={textBreakStrategy}
+    >
       {label}
     </Text>
   </Button>
