@@ -11,9 +11,10 @@ const WrapperDefaultProps = {
   style: undefined,
 };
 
-const withStyle = (Component, baseStyle, displayName = '') => {
+const withStyle = (Component, baseStyleParam, displayName = '') => {
   const Wrapper = (props) => {
     const { style } = props;
+    let baseStyle = callIfFunction(baseStyleParam, props);
     let computedStyle = useMemo(() => (style ? [baseStyle, style] : baseStyle), [style]);
 
     return <Component {...props} style={computedStyle} />;

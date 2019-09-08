@@ -8,6 +8,7 @@ import {
   DISABLED_BORDER_COLOR,
   ACTIVE_BACKGROUND_COLOR,
   ELEMENT_MIN_SIZE,
+  TEXT_COLOR,
   TEXT_ACTIVE_COLOR,
   TEXT_DISABLED_COLOR,
 } from '../constants';
@@ -69,6 +70,7 @@ const TextInput = ({ style, disabled, editable, inputStyle, ...props }) => (
   <View style={style}>
     <RNTextInput
       underlineColorAndroid="transparent"
+      placeholderTextColor={TEXT_COLOR}
       editable={!disabled && editable}
       {...props}
       style={inputStyle}

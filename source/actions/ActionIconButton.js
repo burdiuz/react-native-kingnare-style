@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { IconButton } from '../Button';
+import IconButton from '../Button/IconButton';
 import { renderIconFromAction } from './actions';
 import withActionButton from './withActionButton';
 

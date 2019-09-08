@@ -8,25 +8,44 @@ import withStyle from '../withStyle';
 
 import styles from './styles';
 
-export const HeaderContainer = withStyle(View, styles.container, 'HeaderContainer');
+export const HeaderContainer = withStyle(
+  View,
+  (props) => {
+    const { spaceAbove, spaceBelow } = props;
+    if (spaceAbove && spaceBelow) {
+      return styles.containerVerticalSpace;
+    } else if (spaceAbove) {
+      return styles.containerTopSpace;
+    } else if (spaceBelow) {
+      return styles.containerBottomSpace;
+    } else {
+      return styles.containerNoSpace;
+    }
+  },
+  'HeaderContainer',
+);
 
 const WrapperPropTypes = {
   contentContainerStyle: PropTypes.any,
+  spaceAbove: PropTypes.bool,
+  spaceBelow: PropTypes.bool,
 };
 
 const WrapperDefaultProps = {
   contentContainerStyle: undefined,
+  spaceAbove: false,
+  spaceBelow: true,
 };
 
 const withHeaderContainer = (Component, displayName = '') => {
-  const Wrapper = ({ contentContainerStyle, ...props }) => (
-    <HeaderContainer style={contentContainerStyle}>
+  const Wrapper = ({ contentContainerStyle, spaceAbove, spaceBelow, ...props }) => (
+    <HeaderContainer style={contentContainerStyle} spaceAbove={spaceAbove} spaceBelow={spaceBelow}>
       <Component {...props} />
     </HeaderContainer>
   );
 
-  Wrapper.propTypes = WrapperPropTypes;
-  Wrapper.defaultProps = WrapperDefaultProps;
+  Wrapper.propTypes = { ...(Component.propTypes || {}), ...WrapperPropTypes };
+  Wrapper.defaultProps = { ...(Component.defaultProps || {}), ...WrapperDefaultProps };
 
   Wrapper.displayName = displayName || `withHeaderContainer(${getComponentName(Component)})`;
 

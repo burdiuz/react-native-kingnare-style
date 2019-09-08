@@ -6,20 +6,24 @@ import SectionButton from '../Button/SectionButton';
 const Section = ({
   label,
   style,
+  labelContainerStyle,
   expanded: initialExpanded,
   locked,
   onExpanded,
   onCollapsed,
   children,
   headerChildren,
+  ...props,
 }) => {
   const [expanded, setExpanded] = useState(initialExpanded);
 
   return (
     <>
       <SectionButton
+        {...props}
         style={style}
         label={label}
+        labelContainerStyle={labelContainerStyle}
         expanded={expanded}
         disabled={locked}
         onPress={() => {

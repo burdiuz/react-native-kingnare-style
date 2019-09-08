@@ -11,28 +11,32 @@ import {
   TEXT_COLOR,
 } from '../constants';
 
+export const BUTTON_COLOR = 0x505050ff;
+export const BUTTON_DISABLED_COLOR = 0x3a3a3aff;
+export const BUTTON_SELECTED_COLOR = 0x1a1a1aff;
+export const BUTTON_SELECTED_DISABLED_COLOR = 0x232323ff;
 export const BUTTON_HIGHLIGHT_COLOR = 0x666666ff;
 export const BUTTON_SELECTED_HIGHLIGHT_COLOR = 0x5b5b5bff;
 
 export const highlightStyles = StyleSheet.create({
   normal: {
-    backgroundColor: 0x505050ff,
+    backgroundColor: BUTTON_COLOR,
     borderColor: LIGHT_BORDER_COLOR,
     borderWidth: 1,
   },
   disabled: {
-    backgroundColor: 0x3a3a3aff,
+    backgroundColor: BUTTON_DISABLED_COLOR,
     borderColor: 0x5d5d5dff,
     borderWidth: 1,
   },
   selected: {
-    backgroundColor: 0x1a1a1aff,
+    backgroundColor: BUTTON_SELECTED_COLOR,
     borderColor: 0x515151ff,
     borderWidth: 1,
   },
   selectedDisabled: {
-    backgroundColor: 0x232323ff,
-    borderColor: 0x3a3a3aff,
+    backgroundColor: BUTTON_SELECTED_DISABLED_COLOR,
+    borderColor: BUTTON_DISABLED_COLOR,
     borderWidth: 1,
   },
 });
@@ -131,7 +135,7 @@ export const radioInnerStyles = StyleSheet.create({
     backgroundColor: ACTIVE_BACKGROUND_COLOR,
   },
   selected: {
-    borderColor: 0x505050ff,
+    borderColor: BUTTON_COLOR,
     backgroundColor: TEXT_ACTIVE_COLOR,
   },
   selectedDisabled: {

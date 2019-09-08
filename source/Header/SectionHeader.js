@@ -16,10 +16,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   icon: { width: 18, height: 18, margin: 7 },
-  text: { flexShrink: 0, flexGrow: 1, textAlign: 'left' },
+  text: { flex: 1, textAlign: 'left' },
 });
 
-const SectionHeaderView = ({ expanded, active, style, text, children }) => {
+const SectionHeaderView = ({ expanded, active, style, text, children, ...props }) => {
   let Icon;
 
   if (active) {
@@ -31,7 +31,9 @@ const SectionHeaderView = ({ expanded, active, style, text, children }) => {
   return (
     <View style={style}>
       <Icon style={styles.icon} />
-      <SlimHeaderText style={styles.text}>{text}</SlimHeaderText>
+      <SlimHeaderText style={styles.text} {...props}>
+        {text}
+      </SlimHeaderText>
       {children}
     </View>
   );

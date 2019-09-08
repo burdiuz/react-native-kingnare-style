@@ -4,12 +4,27 @@ import { TEXT_ACTIVE_COLOR } from '../constants';
 
 const HEADER_COLOR = TEXT_ACTIVE_COLOR;
 
+const PADDING = 10;
+
+const container = {
+  flexDirection: 'row',
+  justifyContent: 'center',
+  alignItems: 'center',
+};
+
 export default StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingBottom: 10,
+  containerNoSpace: container,
+  containerTopSpace: {
+    ...container,
+    paddingTop: PADDING,
+  },
+  containerBottomSpace: {
+    ...container,
+    paddingBottom: PADDING,
+  },
+  containerVerticalSpace: {
+    ...container,
+    paddingVertical: PADDING,
   },
   super: {
     color: TEXT_ACTIVE_COLOR,

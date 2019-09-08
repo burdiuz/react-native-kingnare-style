@@ -23,7 +23,6 @@ const LinkButton = (props) => {
     selectionColor,
     suppressHighlighting,
     textBreakStrategy,
-
     style,
     children,
     ...highlightProps
