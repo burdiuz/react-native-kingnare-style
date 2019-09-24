@@ -36,6 +36,7 @@ class SwipeableXContainer extends Component {
     forceCapture: PropTypes.bool,
     contentContainerStyle: PropTypes.any,
   };
+
   static defaultProps = {
     onSwipeStart: undefined,
     onSwipeConfirm: undefined,
@@ -131,15 +132,15 @@ class SwipeableXContainer extends Component {
     const adx = Math.abs(dx);
 
     if (
-      numberActiveTouches === 1 &&
-      (this.props.forceCapture || (adx > 10 && adx > Math.abs(dy) * 3))
+      numberActiveTouches === 1
+      && (this.props.forceCapture || (adx > 10 && adx > Math.abs(dy) * 3))
     ) {
       const { position } = this.state;
       return (
-        (dx < 0 &&
-          ((position === SWIPE_CENTER && this.isLeftSwipeable()) || position === SWIPE_RIGHT)) ||
-        (dx > 0 &&
-          ((position === SWIPE_CENTER && this.isRightSwipeable()) || position === SWIPE_LEFT))
+        (dx < 0
+          && ((position === SWIPE_CENTER && this.isLeftSwipeable()) || position === SWIPE_RIGHT))
+        || (dx > 0
+          && ((position === SWIPE_CENTER && this.isRightSwipeable()) || position === SWIPE_LEFT))
       );
     }
 
@@ -302,7 +303,7 @@ class SwipeableXContainer extends Component {
       if (onAnimationFinish) {
         onAnimationFinish(position, swipe);
       }
-      
+
       if (handler) {
         handler(position, swipe);
       }

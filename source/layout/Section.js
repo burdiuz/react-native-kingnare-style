@@ -13,7 +13,7 @@ const Section = ({
   onCollapsed,
   children,
   headerChildren,
-  ...props,
+  ...props
 }) => {
   const [expanded, setExpanded] = useState(initialExpanded);
 

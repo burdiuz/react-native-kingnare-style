@@ -71,8 +71,7 @@ const withContentSibling = (ControlComponent, contentRenderer, displayName) => {
 
   const RefForward = forwardRef((props, ref) => <ContentSibling {...props} forwardedRef={ref} />);
 
-  RefForward.displayName =
-    displayName || `withContentSibling(${getComponentName(ControlComponent)})`;
+  RefForward.displayName = displayName || `withContentSibling(${getComponentName(ControlComponent)})`;
 
   return RefForward;
 };

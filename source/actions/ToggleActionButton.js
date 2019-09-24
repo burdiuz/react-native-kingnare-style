@@ -76,10 +76,9 @@ class ToggleActionButton extends Component {
       return action;
     });
 
-    changed =
-      changed ||
-      (propsAction && propsAction !== currentAction) ||
-      (defaultAction && !currentAction);
+    changed = changed
+      || (propsAction && propsAction !== currentAction)
+      || (defaultAction && !currentAction);
 
     if (!changed) {
       return null;

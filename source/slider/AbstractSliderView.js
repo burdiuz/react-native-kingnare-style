@@ -22,7 +22,7 @@ class AbstractSliderView extends Component {
     // container style
     style: PropTypes.any,
   };
-  
+
   static defaultProps = {
     onSliderLayout: undefined,
     value: 0,
@@ -50,10 +50,10 @@ class AbstractSliderView extends Component {
     const { backgroundX, backgroundY, backgroundWidth, backgroundHeight } = this.state;
 
     if (
-      backgroundX === x &&
-      backgroundY === y &&
-      backgroundWidth === width &&
-      backgroundHeight === height
+      backgroundX === x
+      && backgroundY === y
+      && backgroundWidth === width
+      && backgroundHeight === height
     ) {
       return;
     }

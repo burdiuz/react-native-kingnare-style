@@ -24,8 +24,7 @@ const withStyleInheritance = (Component, defaultStyle, displayName = '') => {
   Wrapper.propTypes = WrapperPropTypes;
   Wrapper.defaultProps = WrapperDefaultProps;
 
-  Wrapper.displayName =
-    displayName || `withStyleInheritance(${getComponentName(Component)})`;
+  Wrapper.displayName = displayName || `withStyleInheritance(${getComponentName(Component)})`;
 
   return Wrapper;
 };

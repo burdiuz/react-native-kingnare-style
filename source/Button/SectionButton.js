@@ -24,34 +24,32 @@ const SectionButton = ({
   suppressHighlighting,
   textBreakStrategy,
   ...props
-}) => {
-  return (
-    <TouchableHighlight
-      {...props}
-      style={style}
-      disabled={disabled}
-      underlayColor={BUTTON_HIGHLIGHT_COLOR}
+}) => (
+  <TouchableHighlight
+    {...props}
+    style={style}
+    disabled={disabled}
+    underlayColor={BUTTON_HIGHLIGHT_COLOR}
+  >
+    <SectionHeader
+      text={label}
+      expanded={expanded}
+      active={!disabled}
+      numberOfLines={numberOfLines}
+      adjustsFontSizeToFit
+      allowFontScaling={allowFontScaling}
+      ellipsizeMode={ellipsizeMode}
+      maxFontSizeMultiplier={maxFontSizeMultiplier}
+      minimumFontScale={minimumFontScale}
+      selectable={selectable}
+      selectionColor={selectionColor}
+      suppressHighlighting={suppressHighlighting}
+      textBreakStrategy={textBreakStrategy}
+      style={labelContainerStyle}
     >
-      <SectionHeader
-        text={label}
-        expanded={expanded}
-        active={!disabled}
-        numberOfLines={numberOfLines}
-        adjustsFontSizeToFit
-        allowFontScaling={allowFontScaling}
-        ellipsizeMode={ellipsizeMode}
-        maxFontSizeMultiplier={maxFontSizeMultiplier}
-        minimumFontScale={minimumFontScale}
-        selectable={selectable}
-        selectionColor={selectionColor}
-        suppressHighlighting={suppressHighlighting}
-        textBreakStrategy={textBreakStrategy}
-        style={labelContainerStyle}
-      >
-        {children}
-      </SectionHeader>
-    </TouchableHighlight>
-  );
-};
+      {children}
+    </SectionHeader>
+  </TouchableHighlight>
+);
 
 export default SectionButton;

@@ -7,7 +7,7 @@ import { withStyles } from '../withStyle';
 export const withBorderColor = (Component, hasBorder, borderColor, displayName = '') => {
   const Wrapped = withStyles(Component, {
     style: (props) => {
-      if(hasBorder(props)) {
+      if (hasBorder(props)) {
         return {
           borderColor,
         };

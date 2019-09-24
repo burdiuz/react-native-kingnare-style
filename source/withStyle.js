@@ -14,8 +14,8 @@ const WrapperDefaultProps = {
 const withStyle = (Component, baseStyleParam, displayName = '') => {
   const Wrapper = (props) => {
     const { style } = props;
-    let baseStyle = callIfFunction(baseStyleParam, props);
-    let computedStyle = useMemo(() => (style ? [baseStyle, style] : baseStyle), [style]);
+    const baseStyle = callIfFunction(baseStyleParam, props);
+    const computedStyle = useMemo(() => (style ? [baseStyle, style] : baseStyle), [style]);
 
     return <Component {...props} style={computedStyle} />;
   };
@@ -54,8 +54,7 @@ export const withStyles = (Component, styles = {}, displayName = '') => {
   Wrapper.propTypes = WrapperPropTypes;
   Wrapper.defaultProps = WrapperDefaultProps;
 
-  Wrapper.displayName =
-    displayName || `withStyles(${getComponentName(Component)}, "${styleKeys.join('", "')}")`;
+  Wrapper.displayName = displayName || `withStyles(${getComponentName(Component)}, "${styleKeys.join('", "')}")`;
 
   return Wrapper;
 };
