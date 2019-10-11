@@ -14,7 +14,12 @@ const MoreMenuButton = (props) => {
 };
 
 MoreMenuButton.propTypes = {
+  ...MoreMenuButtonView.propTypes,
   showContent: PropTypes.func.isRequired,
+};
+
+MoreMenuButton.defaultProps = {
+  ...MoreMenuButtonView.defaultProps,
 };
 
 const moreContentRenderer = ({ children, contentContainerStyle }, close) => {

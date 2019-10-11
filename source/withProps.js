@@ -7,6 +7,9 @@ const withProps = (Component, augmentProps, displayName = '') => {
 
   Wrapper.displayName = displayName || `withProps(${getComponentName(Component)})`;
 
+  Wrapper.propTypes = Component.propTypes;
+  Wrapper.defaultProps = Component.defaultProps;
+
   return Wrapper;
 };
 

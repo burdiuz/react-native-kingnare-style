@@ -49,7 +49,7 @@ ColorPaletteView.defaultProps = {
   multiplier={6}
   cellSize={30}
   onValue={(value) => console.log('ColorPalette:', `0x${value.toString(16)}`)}
-/>     
+/>
  */
 class ColorPalette extends Component {
   static propTypes = {
@@ -61,6 +61,7 @@ class ColorPalette extends Component {
     ...ColorPaletteView.defaultProps,
     onValue: undefined,
   };
+
   constructor(props) {
     super(props);
 
@@ -85,9 +86,8 @@ class ColorPalette extends Component {
     const sheetX = (locationX / sheetSize) >> 0;
     const sheetY = (locationY / sheetSize) >> 0;
     const sheetIndex = Math.max(0, Math.min(multiplier - 1, sheetX + sheetY * maxSheetsPerLine));
-    const value =
-      ((colorStep * sheetIndex) << 16) |
-      getGBFromPosition(
+    const value = ((colorStep * sheetIndex) << 16)
+      | getGBFromPosition(
         locationX - sheetX * sheetSize,
         locationY - sheetY * sheetSize,
         multiplier,

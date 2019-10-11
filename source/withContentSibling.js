@@ -17,12 +17,14 @@ import { getComponentName } from './utils';
 const withContentSibling = (ControlComponent, contentRenderer, displayName) => {
   class ContentSibling extends Component {
     static propTypes = {
+      ...ControlComponent.propTypes,
       showContent: PropTypes.func,
       mapContentProps: PropTypes.func,
       forwardedRef: PropTypes.any,
     };
 
     static defaultProps = {
+      ...ControlComponent.defaultProps,
       showContent: undefined,
       mapContentProps: undefined,
     };
@@ -71,8 +73,7 @@ const withContentSibling = (ControlComponent, contentRenderer, displayName) => {
 
   const RefForward = forwardRef((props, ref) => <ContentSibling {...props} forwardedRef={ref} />);
 
-  RefForward.displayName =
-    displayName || `withContentSibling(${getComponentName(ControlComponent)})`;
+  RefForward.displayName = displayName || `withContentSibling(${getComponentName(ControlComponent)})`;
 
   return RefForward;
 };

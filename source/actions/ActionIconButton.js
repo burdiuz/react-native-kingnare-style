@@ -5,9 +5,7 @@ import { renderIconFromAction } from './actions';
 import withActionButton from './withActionButton';
 
 const ActionIconButton = withActionButton(IconButton, {
-  iconRenderer: ({ action, iconSize, iconStyle }) => {
-    return renderIconFromAction(action, iconSize, iconStyle);
-  },
+  iconRenderer: ({ action, iconSize, iconStyle }) => renderIconFromAction(action, iconSize, iconStyle),
 });
 
 ActionIconButton.propTypes = {

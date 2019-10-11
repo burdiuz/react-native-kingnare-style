@@ -4,7 +4,7 @@ import { PanResponder } from 'react-native';
 import throttle from 'lodash/throttle';
 
 /**
-  To work properly its internal Views for background and thumb 
+  To work properly its internal Views for background and thumb
   must have pointerEvents set to "none".
 */
 class Slider extends Component {
@@ -15,6 +15,7 @@ class Slider extends Component {
     disabled: PropTypes.bool,
     onChange: PropTypes.func,
   };
+
   static defaultProps = {
     value: 0,
     disabled: false,

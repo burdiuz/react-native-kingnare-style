@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import { getComponentName } from '../utils';
@@ -14,18 +14,25 @@ const WrapperDefaultProps = {
 };
 
 const withStyleInheritance = (Component, defaultStyle, displayName = '') => {
-  const Wrapper = ({ style, inheritStyle, ...props }) => (
-    <Component
-      {...props}
-      style={inheritStyle ? style : [defaultStyle, style]}
-    />
-  );
+  const Wrapper = ({ style: propStyle, inheritStyle, ...props }) => {
+    const style = useMemo(() => (inheritStyle ? propStyle : [defaultStyle, propStyle]), [
+      propStyle,
+      inheritStyle,
+    ]);
 
-  Wrapper.propTypes = WrapperPropTypes;
-  Wrapper.defaultProps = WrapperDefaultProps;
+    return <Component {...props} style={style} />;
+  };
 
-  Wrapper.displayName =
-    displayName || `withStyleInheritance(${getComponentName(Component)})`;
+  Wrapper.propTypes = {
+    ...Component.propTypes,
+    ...WrapperPropTypes,
+  };
+  Wrapper.defaultProps = {
+    ...Component.defaultProps,
+    ...WrapperDefaultProps,
+  };
+
+  Wrapper.displayName = displayName || `withStyleInheritance(${getComponentName(Component)})`;
 
   return Wrapper;
 };

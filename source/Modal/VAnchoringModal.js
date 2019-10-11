@@ -13,6 +13,7 @@ class VAnchoringModal extends Component {
     marginBetween: PropTypes.number,
     onPressOutside: PropTypes.func,
   };
+
   static defaultProps = {
     marginBetween: 2,
     onPressOutside: undefined,

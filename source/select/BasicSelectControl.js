@@ -29,22 +29,20 @@ const defaultSelectedItemRenderer = ({ selectedItem, placeholder }) => {
 };
 
 const BasicSelectControl = forwardRef(
-  ({ showContent, selectedItemRenderer, style, ...props }, ref) => {
-    return (
-      <TouchableWithoutFeedback
-        {...props}
-        style={selectStyles.touchable}
-        onPress={() => showContent(props)}
-      >
-        <View ref={ref} style={style ? [selectStyles.wrapper, style] : selectStyles.wrapper}>
-          <Area style={selectStyles.area} contentContainerStyle={selectStyles.areaContent}>
-            {selectedItemRenderer(props)}
-          </Area>
-          <DropDownButton onPress={() => showContent(props)} />
-        </View>
-      </TouchableWithoutFeedback>
-    );
-  },
+  ({ showContent, selectedItemRenderer, style, ...props }, ref) => (
+    <TouchableWithoutFeedback
+      {...props}
+      style={selectStyles.touchable}
+      onPress={() => showContent(props)}
+    >
+      <View ref={ref} style={style ? [selectStyles.wrapper, style] : selectStyles.wrapper}>
+        <Area style={selectStyles.area} contentContainerStyle={selectStyles.areaContent}>
+          {selectedItemRenderer(props)}
+        </Area>
+        <DropDownButton onPress={() => showContent(props)} />
+      </View>
+    </TouchableWithoutFeedback>
+  ),
 );
 
 BasicSelectControl.propTypes = {

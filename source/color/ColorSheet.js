@@ -34,11 +34,11 @@ export const ColorSheetView = forwardRef(
       .fill(0, 0, count)
       .map(
         (_, index) =>
-          (redPart |
-            ((step * (index % multiplier >> 0)) << 8) |
-            ((step * ((index / multiplier) >> 0)) >> 0)) *
-            256 +
-          0xff,
+          (redPart
+            | ((step * (index % multiplier >> 0)) << 8)
+            | ((step * ((index / multiplier) >> 0)) >> 0))
+            * 256
+          + 0xff,
       );
 
     return (
@@ -88,8 +88,7 @@ export const getGBFromPosition = (
   const colorStep = (0xff / (multiplier - 1)) >> 0;
   const x = Math.max(0, (locationX - margin) / coordStep) >> 0;
   const y = Math.max(0, (locationY - margin) / coordStep) >> 0;
-  const value =
-    ((x >= multiplier ? 0xff : colorStep * x) << 8) | (y >= multiplier ? 0xff : colorStep * y);
+  const value = ((x >= multiplier ? 0xff : colorStep * x) << 8) | (y >= multiplier ? 0xff : colorStep * y);
 
   return value;
 };
@@ -128,9 +127,8 @@ class ColorSheet extends Component {
 
   getValueFromGesture({ locationX, locationY }) {
     const { multiplier, red, margin, cellSize, cellMargin } = this.props;
-    const value =
-      (red << 16) |
-      getGBFromPosition(locationX, locationY, multiplier, cellSize, margin, cellMargin);
+    const value = (red << 16)
+      | getGBFromPosition(locationX, locationY, multiplier, cellSize, margin, cellMargin);
 
     return value;
   }

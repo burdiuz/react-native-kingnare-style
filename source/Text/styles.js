@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { TEXT_COLOR, TEXT_ACTIVE_COLOR,TEXT_DISABLED_COLOR } from '../constants';
+import { TEXT_COLOR, TEXT_ACTIVE_COLOR, TEXT_DISABLED_COLOR } from '../constants';
 
 export default StyleSheet.create({
   text: {
@@ -10,7 +10,7 @@ export default StyleSheet.create({
     /*
     borderWidth: 1,
     borderColor: '#f00',
-    //*/
+    // */
   },
   italic: {
     fontStyle: 'italic',

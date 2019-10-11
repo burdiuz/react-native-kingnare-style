@@ -54,18 +54,25 @@ export const renderActiveBlockingView = ({ onRequestClose }) => (
   <BlockingView onPress={onRequestClose} />
 );
 
-export const createBaseModal = (renderBackground = () => null) => (allProps) => {
-  const {
-    modalProps,
-    props: { children },
-  } = separateModalProps(allProps);
+export const createBaseModal = (renderBackground = () => null) => {
+  const ModalWrapper = (allProps) => {
+    const {
+      modalProps,
+      props: { children },
+    } = separateModalProps(allProps);
 
-  return (
-    <Modal {...modalProps} transparent style={styles.modal}>
-      {renderBackground(allProps)}
-      {children}
-    </Modal>
-  );
+    return (
+      <Modal {...modalProps} transparent style={styles.modal}>
+        {renderBackground(allProps)}
+        {children}
+      </Modal>
+    );
+  };
+
+  ModalWrapper.propTypes = Modal.propTypes;
+  ModalWrapper.defaultProps = Modal.defaultProps;
+
+  return ModalWrapper;
 };
 
 const BaseModal = createBaseModal();

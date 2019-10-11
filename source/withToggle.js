@@ -7,6 +7,9 @@ const withToggle = (Component, toggleFn, displayName) => {
 
   Wrapper.displayName = displayName || `withToggle(${getComponentName(Component)})`;
 
+  Wrapper.propTypes = Component.propTypes;
+  Wrapper.defaultProps = Component.defaultProps;
+
   return Wrapper;
 };
 

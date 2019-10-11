@@ -14,13 +14,13 @@ export const HeaderContainer = withStyle(
     const { spaceAbove, spaceBelow } = props;
     if (spaceAbove && spaceBelow) {
       return styles.containerVerticalSpace;
-    } else if (spaceAbove) {
+    } if (spaceAbove) {
       return styles.containerTopSpace;
-    } else if (spaceBelow) {
+    } if (spaceBelow) {
       return styles.containerBottomSpace;
-    } else {
-      return styles.containerNoSpace;
     }
+    return styles.containerNoSpace;
+
   },
   'HeaderContainer',
 );

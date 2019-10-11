@@ -14,14 +14,21 @@ const WrapperDefaultProps = {
 const withStyle = (Component, baseStyleParam, displayName = '') => {
   const Wrapper = (props) => {
     const { style } = props;
-    let baseStyle = callIfFunction(baseStyleParam, props);
-    let computedStyle = useMemo(() => (style ? [baseStyle, style] : baseStyle), [style]);
+    const baseStyle = callIfFunction(baseStyleParam, props);
+    const computedStyle = useMemo(() => (style ? [baseStyle, style] : baseStyle), [style]);
 
     return <Component {...props} style={computedStyle} />;
   };
 
-  Wrapper.propTypes = WrapperPropTypes;
-  Wrapper.defaultProps = WrapperDefaultProps;
+  Wrapper.propTypes = {
+    ...WrapperPropTypes,
+    ...Component.propTypes,
+  };
+
+  Wrapper.defaultProps = {
+    ...WrapperDefaultProps,
+    ...Component.defaultProps,
+  };
 
   Wrapper.displayName = displayName || `withStyle(${getComponentName(Component)})`;
 
@@ -51,11 +58,17 @@ export const withStyles = (Component, styles = {}, displayName = '') => {
     return <Component {...props} {...combinedStyles} />;
   };
 
-  Wrapper.propTypes = WrapperPropTypes;
-  Wrapper.defaultProps = WrapperDefaultProps;
+  Wrapper.propTypes = {
+    ...WrapperPropTypes,
+    ...Component.propTypes,
+  };
 
-  Wrapper.displayName =
-    displayName || `withStyles(${getComponentName(Component)}, "${styleKeys.join('", "')}")`;
+  Wrapper.defaultProps = {
+    ...WrapperDefaultProps,
+    ...Component.defaultProps,
+  };
+
+  Wrapper.displayName = displayName || `withStyles(${getComponentName(Component)}, "${styleKeys.join('", "')}")`;
 
   return Wrapper;
 };

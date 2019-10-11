@@ -127,8 +127,14 @@ const withLabel = (Component, defaultLabelStyle, displayName = '') => {
     );
   };
 
-  Container.propTypes = ContainerPropTypes;
-  Container.defaultProps = ContainerDefaultProps;
+  Container.propTypes = {
+    ...Component.propTypes,
+    ...ContainerPropTypes,
+  };
+  Container.defaultProps = {
+    ...Component.defaultProps,
+    ...ContainerDefaultProps,
+  };
 
   Container.displayName = displayName || `withLabel(${getComponentName(Component)})`;
 

@@ -14,7 +14,7 @@ const withConnected = (WrappedComponent, hideWhenNotAvailable = true, displayNam
       this.init();
     }
 
-    async init () {
+    async init() {
       const connected = await NetInfo.isConnected.fetch();
 
       NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectedChange);

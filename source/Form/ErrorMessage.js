@@ -9,7 +9,7 @@ import { getComponentName } from '../utils';
 import Small from '../Text/Small';
 
 const ErrorMessage = ({ message, occupySpace }) => {
-  if(!occupySpace && !message) {
+  if (!occupySpace && !message) {
     return null;
   }
 
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 });
 
 export const withErrorMessage = (Component) => {
-  const Wrapper = ({errorMessage, ...props}) => (
+  const Wrapper = ({ errorMessage, ...props }) => (
     <>
       <Component {...props} />
       <ErrorMessage message={errorMessage} />

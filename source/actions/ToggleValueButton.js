@@ -10,7 +10,7 @@ export const defaultButtonRenderer = (action, onAction, props) => (
 const defaultGetActionFromValue = ({ actionToValue, value }) =>
   Object.keys(actionToValue).find((type) => actionToValue[type] === value);
 
-  /*
+/*
   WIP component which has values assigned to certain action types
   */
 class ToggleValueButton extends Component {

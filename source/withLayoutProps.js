@@ -129,11 +129,14 @@ const withLayoutProps = (
       return null;
     }
 
-    //{...FLEX_PROPS_UNSET}
+    // {...FLEX_PROPS_UNSET}
     return <ContentComponent {...props} style={combinedStyle} />;
   };
 
   Wrapper.displayName = displayName || `withLayoutProps(${getComponentName(ContentComponent)})`;
+
+  Wrapper.propTypes = ContentComponent.propTypes;
+  Wrapper.defaultProps = ContentComponent.defaultProps;
 
   return Wrapper;
 };
