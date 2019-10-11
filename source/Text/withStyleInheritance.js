@@ -14,7 +14,6 @@ const WrapperDefaultProps = {
 };
 
 const withStyleInheritance = (Component, defaultStyle, displayName = '') => {
-<<<<<<< HEAD
   const Wrapper = ({ style: propStyle, inheritStyle, ...props }) => {
     const style = useMemo(() => (inheritStyle ? propStyle : [defaultStyle, propStyle]), [
       propStyle,
@@ -32,17 +31,6 @@ const withStyleInheritance = (Component, defaultStyle, displayName = '') => {
     ...Component.defaultProps,
     ...WrapperDefaultProps,
   };
-=======
-  const Wrapper = ({ style, inheritStyle, ...props }) => (
-    <Component
-      {...props}
-      style={inheritStyle ? style : [defaultStyle, style]}
-    />
-  );
-
-  Wrapper.propTypes = WrapperPropTypes;
-  Wrapper.defaultProps = WrapperDefaultProps;
->>>>>>> 5df1ba0f96e7243d65c7d15f799005cacfcf596e
 
   Wrapper.displayName = displayName || `withStyleInheritance(${getComponentName(Component)})`;
 
