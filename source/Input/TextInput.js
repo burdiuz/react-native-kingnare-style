@@ -72,6 +72,7 @@ const TextInput = ({ style, disabled, editable, inputStyle, ...props }) => (
       underlineColorAndroid="transparent"
       placeholderTextColor={TEXT_COLOR}
       editable={!disabled && editable}
+      disableFullscreenUI
       {...props}
       style={inputStyle}
     />

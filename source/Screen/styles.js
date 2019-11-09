@@ -6,6 +6,13 @@ export default StyleSheet.create({
   screen: {
     flex: 1,
     backgroundColor: BACKGROUND_COLOR,
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   blocking: {
     position: 'absolute',

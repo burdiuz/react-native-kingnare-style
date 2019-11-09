@@ -39,6 +39,7 @@ export const withInputPlaceholder = (Component, displayName = '') => {
     keepErrorMessageSpace,
     style,
     contentContainerStyle,
+    children,
     ...props
   }) => (
     <InputPlaceholder
@@ -47,6 +48,7 @@ export const withInputPlaceholder = (Component, displayName = '') => {
       keepErrorMessageSpace={keepErrorMessageSpace}
       style={contentContainerStyle}
     >
+      {children}
       <ComponentWithBorder errorMessage={errorMessage} style={style} {...props} />
     </InputPlaceholder>
   );
