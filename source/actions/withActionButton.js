@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import isFunction from '@actualwave/is-function';
 
 import { getComponentName, callIfFunction } from '../utils';
 import { ActionPropType, getAction } from './actions';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, View, StyleSheet } from 'react-native';
+import { Modal, StyleSheet } from 'react-native';
 
 import Screen from './Screen';
 import { separateModalProps } from '../BaseModal';

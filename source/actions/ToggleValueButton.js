@@ -45,7 +45,7 @@ class ToggleValueButton extends Component {
   };
 
   render() {
-    const { buttonRenderer, getActionFromValue, value, actionToValue } = this.props;
+    const { buttonRenderer, value, actionToValue } = this.props;
 
     return buttonRenderer(actionToValue.find(value), this.handleAction, props);
   }

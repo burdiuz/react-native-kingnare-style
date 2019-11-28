@@ -182,7 +182,7 @@ class SwipeableXContainer extends Component {
       swipeThroughVelocity,
     } = this.props;
     const adx = Math.abs(dx);
-    const { onSwipeConfirm, onAnimationFinish } = this.props;
+    const { onSwipeConfirm } = this.props;
     const { position, width } = this.state;
     const swipeThreshold = width * swipeThresholdMultiplier;
     const swipeThroughThreshold = width * swipeThroughThresholdMultiplier;
