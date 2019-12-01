@@ -13,6 +13,8 @@ const SectionButton = ({
   expanded,
   disabled,
   style,
+  iconStyle,
+  labelStyle,
   numberOfLines,
   adjustsFontSizeToFit,
   allowFontScaling,
@@ -46,6 +48,8 @@ const SectionButton = ({
       suppressHighlighting={suppressHighlighting}
       textBreakStrategy={textBreakStrategy}
       style={labelContainerStyle}
+      iconStyle={iconStyle}
+      textStyle={labelStyle}
     >
       {children}
     </SectionHeader>

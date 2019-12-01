@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { LIGHT_BORDER_COLOR } from '../constants';
-import withStyle from '../withStyle';
+import { withStyles } from '../withStyle';
 import { ArrowRightIcon, ArrowRightActiveIcon } from '../assets/ArrowRightIcon';
 import { DropDownIcon, DropDownActiveIcon } from '../assets/DropDownIcon';
 import { SlimHeaderText } from './SlimHeader';
@@ -19,7 +19,16 @@ const styles = StyleSheet.create({
   text: { flex: 1, textAlign: 'left' },
 });
 
-const SectionHeaderView = ({ expanded, active, style, text, children, ...props }) => {
+const SectionHeaderView = ({
+  expanded,
+  active,
+  style,
+  iconStyle,
+  textStyle,
+  text,
+  children,
+  ...props
+}) => {
   let Icon;
 
   if (active) {
@@ -30,8 +39,8 @@ const SectionHeaderView = ({ expanded, active, style, text, children, ...props }
 
   return (
     <View style={style}>
-      <Icon style={styles.icon} />
-      <SlimHeaderText style={styles.text} {...props}>
+      <Icon style={iconStyle} />
+      <SlimHeaderText style={textStyle} {...props}>
         {text}
       </SlimHeaderText>
       {children}
@@ -39,4 +48,12 @@ const SectionHeaderView = ({ expanded, active, style, text, children, ...props }
   );
 };
 
-export default withStyle(SectionHeaderView, styles.container, 'SectionHeader');
+export default withStyles(
+  SectionHeaderView,
+  {
+    style: styles.container,
+    iconStyle: styles.icon,
+    textStyle: styles.text,
+  },
+  'SectionHeader',
+);

@@ -1,28 +1,34 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import { callIfFunction } from '../utils';
 import SectionButton from '../Button/SectionButton';
 
-const Section = ({
-  label,
-  style,
-  labelContainerStyle,
-  expanded: initialExpanded,
-  locked,
-  onExpanded,
-  onCollapsed,
-  children,
-  headerChildren,
-  ...props
-}) => {
+const Section = (props) => {
+  const {
+    label,
+    style,
+    iconStyle,
+    labelStyle,
+    labelContainerStyle,
+    expanded: initialExpanded,
+    locked,
+    onExpanded,
+    onCollapsed,
+    children,
+    headerChildren,
+    ...buttonProps
+  } = props;
   const [expanded, setExpanded] = useState(initialExpanded);
 
   return (
     <>
       <SectionButton
-        {...props}
+        {...buttonProps}
         style={style}
         label={label}
+        iconStyle={iconStyle}
+        labelStyle={labelStyle}
         labelContainerStyle={labelContainerStyle}
         expanded={expanded}
         disabled={locked}
@@ -36,9 +42,9 @@ const Section = ({
           }
         }}
       >
-        {headerChildren}
+        {callIfFunction(headerChildren, props)}
       </SectionButton>
-      {expanded ? children : null}
+      {expanded ? callIfFunction(children, props) : null}
     </>
   );
 };

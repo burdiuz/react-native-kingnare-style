@@ -34,3 +34,4 @@ export {
 } from './SwipeableXContainer';
 export { default as MoreMenu } from './MoreMenu';
 export { default as InfiniteProgressBar } from './InfiniteProgressBar';
+export * from './KeyboardHeight';
