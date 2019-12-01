@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { View, TextInput as RNTextInput, StyleSheet } from 'react-native';
 
@@ -66,24 +66,36 @@ const inputStyles = StyleSheet.create({
   ]),
 });
 
-const TextInput = ({ style, disabled, editable, inputStyle, ...props }) => (
-  <View style={style}>
-    <RNTextInput
-      underlineColorAndroid="transparent"
-      placeholderTextColor={TEXT_COLOR}
-      editable={!disabled && editable}
-      disableFullscreenUI
-      {...props}
-      style={inputStyle}
-    />
-  </View>
-);
+const TextInput = ({ style, disabled, editable, focusOnMount, inputStyle, ...props }) => {
+  const ref = useRef();
+
+  useEffect(() => {
+    if (focusOnMount && ref.current) {
+      ref.current.focus();
+    }
+  }, []);
+
+  return (
+    <View style={style}>
+      <RNTextInput
+        ref={ref}
+        underlineColorAndroid="transparent"
+        placeholderTextColor={TEXT_COLOR}
+        editable={!disabled && editable}
+        disableFullscreenUI
+        {...props}
+        style={inputStyle}
+      />
+    </View>
+  );
+};
 
 TextInput.propTypes = {
   style: PropTypes.any,
   inputStyle: PropTypes.any,
   disabled: PropTypes.bool,
   editable: PropTypes.bool,
+  focusOnMount: PropTypes.bool,
 };
 
 TextInput.defaultProps = {
@@ -91,6 +103,7 @@ TextInput.defaultProps = {
   inputStyle: undefined,
   disabled: false,
   editable: true,
+  focusOnMount: false,
 };
 
 export default withStyles(
