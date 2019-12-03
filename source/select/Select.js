@@ -68,6 +68,7 @@ const selectContentRenderer = (props, close) => {
   return (
     <BlockingModal style={contentContainerStyle} onRequestClose={close}>
       {callIfFunction(children, props, close)}
+      <LinkButton label="Close" onPress={close} />
     </BlockingModal>
   );
 };
