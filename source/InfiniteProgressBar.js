@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Image, Animated, Easing } from 'react-native';
 
+import withStyle from './withStyle';
+
 const { View: AnimatedView } = Animated;
 
 const progress = require('react-native-kingnare-style-assets/progress.png');
@@ -85,5 +87,26 @@ class InfiniteProgressBar extends Component {
     );
   }
 }
+
+export const InfiniteProgressBarView = withStyle(
+  ({ children, ...props }) => (
+    <View {...props}>
+      <InfiniteProgressBar />
+      {children}
+    </View>
+  ),
+  { flex: 1, alignItems: 'stretch', justifyContent: 'center', padding: 10 },
+  'InfiniteProgressBarView',
+);
+
+InfiniteProgressBarView.propTypes = {
+  style: PropTypes.any,
+  children: PropTypes.node,
+};
+
+InfiniteProgressBarView.defaultProps = {
+  style: undefined,
+  children: undefined,
+};
 
 export default InfiniteProgressBar;
