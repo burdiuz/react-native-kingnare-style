@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isFunction from '@actualwave/is-function';
+import callIfFunction from '@actualwave/call-if-function';
 
-import { callIfFunction } from '../utils';
 import { BlockingModal } from './Modal';
 
 const combineCloseCallback = (callback, close) => async (...args) => {

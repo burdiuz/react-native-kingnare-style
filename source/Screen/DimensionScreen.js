@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView } from 'react-native';
+import { View, ScrollView } from 'react-native';
 
 import { styles } from '../layout/ConstraintView';
 import withConstraintView from '../layout/withConstraintView';
-import Layout from '../layout/Layout';
 
 import Screen from './Screen';
 
 export const DimensionScreen = withConstraintView(
   styles.dimension,
-  Layout,
+  View,
   Screen,
   'DimensionScreen',
 );

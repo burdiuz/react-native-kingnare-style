@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import callIfFunction from '@actualwave/call-if-function';
 
-import { callIfFunction } from '../utils';
 import ActionGroup from '../actions/ActionGroup';
 import ActionTextButton from '../actions/ActionTextButton';
 import { registerAction, ActionPropType } from '../actions/actions';

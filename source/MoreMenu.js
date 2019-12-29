@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import callIfFunction from '@actualwave/call-if-function';
 
-import { callIfFunction } from './utils';
 import { BlockingModal } from './Modal/Modal';
 import { bigModalDefaultStyle } from './Modal/utils';
 import MoreMenuButtonView from './Button/MoreMenuButton';

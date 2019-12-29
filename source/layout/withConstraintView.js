@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { View, StyleSheet } from 'react-native';
-
-import { getComponentName, callIfFunction } from '../utils';
+import getComponentName from '@actualwave/react-component-name';
+import callIfFunction from '@actualwave/call-if-function';
 
 export const styles = StyleSheet.create({
   container: {

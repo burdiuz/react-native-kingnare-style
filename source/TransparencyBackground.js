@@ -1,10 +1,11 @@
 import React from 'react';
+import { Image, ImageBackground } from 'react-native';
 import {
   CanvasImage,
   CanvasImageDark,
   CanvasBackground,
   CanvasBackgroundDark,
-} from './assets/CanvasBackground';
+} from './assets/CanvasImage';
 
 export const TransparencyImage = (props) => (
   <CanvasImage resizeMode="repeat" {...props} />

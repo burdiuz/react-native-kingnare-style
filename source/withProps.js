@@ -1,6 +1,6 @@
 import React from 'react';
-
-import { getComponentName, callIfFunction } from './utils';
+import getComponentName from '@actualwave/react-component-name';
+import callIfFunction from '@actualwave/call-if-function';
 
 const withProps = (Component, augmentProps, displayName = '') => {
   const Wrapper = (props) => <Component {...props} {...callIfFunction(augmentProps, props)} />;

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import getComponentName from '@actualwave/react-component-name';
+import callIfFunction from '@actualwave/call-if-function';
 
-import { getComponentName, callIfFunction } from '../utils';
 import { ActionPropType, getAction } from './actions';
 
 const withActionButton = (ButtonComponent, defaultProps = {}) => {

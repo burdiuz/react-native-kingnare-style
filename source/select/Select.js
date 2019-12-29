@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FlatList } from 'react-native';
+import callIfFunction from '@actualwave/call-if-function';
 
-import { callIfFunction } from '../utils';
 import { BlockingModal } from '../Modal/Modal';
 import { bigModalDefaultStyle } from '../Modal/utils';
 import LinkButton from '../Button/LinkButton';

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import { callIfFunction } from '../utils';
+import callIfFunction from '@actualwave/call-if-function';
 
 export const SwitchView = ({ index, children, emptyRenderer }) => {
   if (children instanceof Array) {

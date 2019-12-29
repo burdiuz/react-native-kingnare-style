@@ -1,7 +1,7 @@
 {
   "name": "@actualwave/react-native-kingnare-style",
   "description": "Library of UI components for React Native that implements Kingnare Theme originlly created for Adobe Flex",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "source/index.js",
   "keywords": [
     "js",

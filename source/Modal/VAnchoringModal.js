@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Dimensions } from 'react-native';
+import callIfFunction from '@actualwave/call-if-function';
 
-import { callIfFunction } from '../utils';
 import { createBaseModal, renderActiveBlockingView } from '../BaseModal';
 import { PLACEMENT_TOP } from '../constants';
 

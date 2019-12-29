@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import callIfFunction from '@actualwave/call-if-function';
 
-import { callIfFunction } from '../utils';
 import SectionButton from '../Button/SectionButton';
 
 const Section = (props) => {
