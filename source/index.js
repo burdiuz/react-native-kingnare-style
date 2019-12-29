@@ -11,27 +11,18 @@ export * from './Form';
 export * from './constants';
 export * from './select';
 export * from './slider';
-export * from './status';
 export * from './layout';
 export * from './color';
 export { default as withLabel } from './withLabel';
-export { default as withStyle, withStyles } from './withStyle';
 export { default as withProps } from './withProps';
 export { default as withToggle } from './withToggle';
 export { default as withContentSibling } from './withContentSibling';
-export { default as withLayoutProps } from './withLayoutProps';
 export {
   default as TransparencyBackground,
   TransparencyImage,
   TransparencyDarkImage,
   TransparencyDarkBackground,
 } from './TransparencyBackground';
-export {
-  default as SwipeableXContainer,
-  SWIPE_CENTER,
-  SWIPE_LEFT,
-  SWIPE_RIGHT,
-} from './SwipeableXContainer';
 export { default as MoreMenu } from './MoreMenu';
 export { default as InfiniteProgressBar, InfiniteProgressBarView } from './InfiniteProgressBar';
 export * from './KeyboardHeight';

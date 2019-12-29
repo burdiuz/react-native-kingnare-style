@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { withStyles } from '../withStyle';
+import { withStyles } from '@actualwave/react-native-with-style';
 
 import styles from './styles';
 

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, Image, Animated, Easing } from 'react-native';
 
-import withStyle from './withStyle';
+import withStyle from '@actualwave/react-native-with-style';
 
 const { View: AnimatedView } = Animated;
 
-const progress = require('react-native-kingnare-style-assets/progress.png');
+const progress = require('./assets/progress.png');
 
 class InfiniteProgressBar extends Component {
   static propTypes = {

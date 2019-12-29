@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
+import getComponentName from '@actualwave/react-component-name';
 
 import { getButtonStyle } from './Button/utils';
 
@@ -12,8 +13,6 @@ import {
   PLACEMENT_TOP,
   PLACEMENT_BOTTOM,
 } from './constants';
-
-import { getComponentName } from './utils';
 
 import { Text } from './Text';
 

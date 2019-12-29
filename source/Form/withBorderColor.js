@@ -1,8 +1,7 @@
+import { withStyles } from '@actualwave/react-native-with-style';
+import getComponentName from '@actualwave/react-component-name';
+
 import { ERROR_COLOR, WARNING_COLOR, SUCCESS_COLOR, FOCUS_COLOR } from '../constants';
-
-import { getComponentName } from '../utils';
-
-import { withStyles } from '../withStyle';
 
 export const withBorderColor = (Component, hasBorder, borderColor, displayName = '') => {
   const Wrapped = withStyles(Component, {

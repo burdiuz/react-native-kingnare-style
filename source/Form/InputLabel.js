@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
 
+import withStyle from '@actualwave/react-native-with-style';
+import getComponentName from '@actualwave/react-component-name';
+
 import { TEXT_ACTIVE_COLOR } from '../constants';
-import { getComponentName } from '../utils';
-import withStyle from '../withStyle';
 
 import Text from '../Text/Text';
 

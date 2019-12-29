@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { View, TextInput as RNTextInput, StyleSheet } from 'react-native';
+import { withStyles } from '@actualwave/react-native-with-style';
 
 import {
   LIGHT_BORDER_COLOR,
@@ -13,7 +14,6 @@ import {
   TEXT_DISABLED_COLOR,
 } from '../constants';
 
-import { withStyles } from '../withStyle';
 import { getButtonStyle } from '../Button/utils';
 
 const styles = StyleSheet.create({

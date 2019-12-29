@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 
-import { withStyles } from '../withStyle';
+import { withStyles } from '@actualwave/react-native-with-style';
 
 import { TabBarTop, TabBarBottom } from '../select/TabBar';
 import { SwitchView } from './SwitchView';

@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
 });
 
-const withContraintView = (
+const withConstraintView = (
   constraintStyle,
   ContentContainer = View,
   ParentContainer = View,
@@ -31,9 +31,9 @@ const withContraintView = (
     );
   };
 
-  Wrapper.displayName = displayName || `withContraintView(${getComponentName(ContentContainer)})`;
+  Wrapper.displayName = displayName || `withConstraintView(${getComponentName(ContentContainer)})`;
 
   return Wrapper;
 };
 
-export default withContraintView;
+export default withConstraintView;

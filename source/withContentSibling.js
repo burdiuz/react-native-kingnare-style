@@ -1,7 +1,6 @@
 import React, { Component, forwardRef } from 'react';
 import PropTypes from 'prop-types';
-
-import { getComponentName } from './utils';
+import getComponentName from '@actualwave/react-component-name';
 
 /*
   Main idea of this component is to delegate control of displaying additional

@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
+import getComponentName from '@actualwave/react-component-name';
 
 import { ERROR_COLOR } from '../constants';
-
-import { getComponentName } from '../utils';
 
 import Small from '../Text/Small';
 

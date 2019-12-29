@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { withStyles } from '@actualwave/react-native-with-style';
 
 import { LIGHT_BORDER_COLOR } from '../constants';
-import { withStyles } from '../withStyle';
 import { ArrowRightIcon, ArrowRightActiveIcon } from '../assets/ArrowRightIcon';
 import { DropDownIcon, DropDownActiveIcon } from '../assets/DropDownIcon';
 import { SlimHeaderText } from './SlimHeader';

@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
-
-import { getComponentName } from '../utils';
-
-import withStyle from '../withStyle';
+import withStyle from '@actualwave/react-native-with-style';
+import getComponentName from '@actualwave/react-component-name';
 
 import styles from './styles';
 

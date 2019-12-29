@@ -1,7 +1,6 @@
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-
-import { getComponentName } from '../utils';
+import getComponentName from '@actualwave/react-component-name';
 
 const WrapperPropTypes = {
   style: PropTypes.any,

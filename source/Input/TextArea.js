@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet } from 'react-native';
+import { withStyles } from '@actualwave/react-native-with-style';
 
 import { ELEMENT_MIN_SIZE } from '../constants';
-import { withStyles } from '../withStyle';
 
 import TextInput from './TextInput';
 

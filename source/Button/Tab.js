@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { withStyles } from '../withStyle';
+import { withStyles } from '@actualwave/react-native-with-style';
+
 import Text from '../Text/Text';
 
 import Button from './Button';

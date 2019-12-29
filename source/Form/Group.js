@@ -1,6 +1,6 @@
 import { View, StyleSheet } from 'react-native';
 
-import { withStyles } from '../withStyle';
+import { withStyles } from '@actualwave/react-native-with-style';
 
 export const GROUP_PADDING = 10;
 

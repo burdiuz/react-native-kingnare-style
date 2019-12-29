@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { getComponentName } from './utils';
+import getComponentName from '@actualwave/react-component-name';
 
 const withToggle = (Component, toggleFn, displayName) => {
   const Wrapper = (props) => (toggleFn(props) ? <Component {...props} /> : null);

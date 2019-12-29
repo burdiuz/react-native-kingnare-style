@@ -1,12 +1,13 @@
 {
   "name": "@actualwave/react-native-kingnare-style",
-  "description": "Simple wrappers over standard React Naive components to give them look of Kingnare Theme",
+  "description": "Library of UI components for React Native that implements Kingnare Theme originlly created for Adobe Flex",
   "version": "0.0.3",
   "main": "source/index.js",
-  "private": true,
   "keywords": [
     "js",
-    "javascript"
+    "javascript",
+    "react",
+    "reactnative"
   ],
   "homepage": "https://github.com/burdiuz/react-native-kingnare-style",
   "bugs": {
@@ -21,19 +22,18 @@
   },
   "dependencies": {
     "@actualwave/closure-value": "0.0.3",
-    "@actualwave/is-function": "0.0.1"
+    "@actualwave/is-function": "0.0.1",
+    "@actualwave/call-if-function": "^0.0.1",
+    "@actualwave/react-component-name": "^0.0.1",
+    "@actualwave/react-native-with-style": "^0.0.1"
   },
   "peerDependencies": {
-    "react": "16.6.0-alpha.8af6728",
+    "react": "16.6.0",
     "react-native": ">0.57.3",
     "prop-types": "15.6.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/plugin-external-helpers": "^7.0.0",
-    "@babel/runtime": "^7.1.2",
     "babel-eslint": "^10.0.1",
-    "babel-loader": "^8.0.4",
     "babel-plugin-istanbul": "^5.0.1",
     "babel-preset-jest": "^23.2.0",
     "eslint": "^6.4.0",
@@ -42,17 +42,10 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
-    "gulp": "^3.9.1",
     "husky": "^1.0.1",
     "jest": "^23.6.0",
     "lint-staged": "^7.3.0",
-    "metro-react-native-babel-preset": "^0.48.1",
-    "prettier": "^1.14.3",
-    "rollup-plugin-babel": "^4.0.3",
-    "rollup-plugin-commonjs": "^9.1.8",
-    "rollup-plugin-json": "^3.1.0",
-    "rollup-plugin-node-resolve": "^3.4.0",
-    "through2": "^2.0.3"
+    "prettier": "^1.14.3"
   },
   "lint-staged": {
     "source/**/*.js": [
@@ -60,26 +53,6 @@
       "eslint --fix",
       "git add"
     ]
-  },
-  "babel": {
-    "env": {
-      "test": {
-        "plugins": [
-          "babel-plugin-transform-es2015-modules-commonjs",
-          "babel-plugin-transform-flow-strip-types",
-          "babel-plugin-transform-class-properties",
-          [
-            "babel-plugin-transform-object-rest-spread",
-            {
-              "useBuiltIns": true
-            }
-          ]
-        ],
-        "presets": [
-          "jest"
-        ]
-      }
-    }
   },
   "jest": {
     "collectCoverage": true,
@@ -98,13 +71,10 @@
     ]
   },
   "scripts": {
-    "start": "npm run build",
-    "build": "rollup --config",
-    "build:watch": "rollup --config --watch \"./source\"",
     "lint": "./node_modules/.bin/eslint \"source/**/*.js\"",
     "test": "jest --colors",
     "test:watch": "jest --colors --watch",
     "lint-staged": "lint-staged",
-    "precommit": "npm run build && npm run test && npm run lint-staged"
+    "precommit": "npm run test && npm run lint-staged"
   }
 }

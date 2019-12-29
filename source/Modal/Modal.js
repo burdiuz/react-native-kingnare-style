@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
+import { withStyles } from '@actualwave/react-native-with-style';
 
-import { withStyles } from '../withStyle';
 import Area from '../Area/Area';
 import { createBaseModal, renderPassiveBlockingView, separateModalProps } from '../BaseModal';
 
